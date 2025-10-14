@@ -1,0 +1,38 @@
+{
+  "name": "Gold Prices Pakistan",
+  "short_name": "Gold PK",
+  "description": "Real-time gold prices in Pakistan - سونے کی قیمتیں",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FAFAF9",
+  "theme_color": "#D4AF37",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "utilities"],
+  "lang": "en",
+  "dir": "ltr",
+  "screenshots": [],
+  "shortcuts": [
+    {
+      "name": "View Today's Price",
+      "short_name": "Today",
+      "description": "View today's gold price",
+      "url": "/"
+    }
+  ]
+}
+
+

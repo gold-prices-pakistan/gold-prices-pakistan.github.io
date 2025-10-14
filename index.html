@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Real-time gold prices in Pakistan - سونے کی قیمتیں">
+    <meta name="theme-color" content="#D4AF37">
+    
+    <title>Gold Prices Pakistan | سونے کی قیمتیں</title>
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">
+                    <span class="logo-icon">💰</span>
+                    <span data-i18n="app-title">Gold Prices Pakistan</span>
+                </h1>
+                
+                <div class="controls">
+                    <button class="btn-control" id="langToggle" aria-label="Toggle Language">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"/>
+                        </svg>
+                    </button>
+                    
+                    <button class="btn-control" id="themeToggle" aria-label="Toggle Dark Mode">
+                        <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="5"/>
+                            <line x1="12" y1="1" x2="12" y2="3"/>
+                            <line x1="12" y1="21" x2="12" y2="23"/>
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                            <line x1="1" y1="12" x2="3" y2="12"/>
+                            <line x1="21" y1="12" x2="23" y2="12"/>
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                        </svg>
+                        <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <!-- Current Price Hero -->
+            <section class="hero">
+                <div class="hero-header">
+                    <h1 class="hero-title" data-i18n="today-price">Today's Gold Price</h1>
+                    <span class="hero-date" id="currentDate"></span>
+                </div>
+
+                <!-- Featured Prices Grid -->
+                <div class="featured-prices">
+                    <!-- 24K 1 Tola -->
+                    <div class="featured-card" id="featured-24k-1tola">
+                        <div class="featured-label">
+                            <span class="featured-karat">24K</span>
+                            <span class="featured-unit">1 Tola</span>
+                        </div>
+                        <div class="featured-price">
+                            <span class="featured-currency">PKR</span>
+                            <span class="featured-amount">--</span>
+                        </div>
+                    </div>
+
+                    <!-- 24K 10 Gram -->
+                    <div class="featured-card" id="featured-24k-10gram">
+                        <div class="featured-label">
+                            <span class="featured-karat">24K</span>
+                            <span class="featured-unit">10 Gram</span>
+                        </div>
+                        <div class="featured-price">
+                            <span class="featured-currency">PKR</span>
+                            <span class="featured-amount">--</span>
+                        </div>
+                    </div>
+
+                    <!-- 24K 1 Gram -->
+                    <div class="featured-card" id="featured-24k-1gram">
+                        <div class="featured-label">
+                            <span class="featured-karat">24K</span>
+                            <span class="featured-unit">1 Gram</span>
+                        </div>
+                        <div class="featured-price">
+                            <span class="featured-currency">PKR</span>
+                            <span class="featured-amount">--</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- All Prices Table -->
+            <section class="all-prices">
+                <div class="all-prices-header">
+                    <h2 class="all-prices-title">Gold Price in Pakistan</h2>
+                    <p class="all-prices-subtitle">All Weightage & Karat Combinations</p>
+                </div>
+                
+                <div class="matrix-table-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th class="matrix-header-label">Gold Rate</th>
+                                <th class="matrix-karat-header">24 Karat</th>
+                                <th class="matrix-karat-header">22 Karat</th>
+                                <th class="matrix-karat-header">21 Karat</th>
+                                <th class="matrix-karat-header">18 Karat</th>
+                                <th class="matrix-karat-header">12 Karat</th>
+                            </tr>
+                        </thead>
+                        <tbody id="matrixTableBody">
+                            <!-- Dynamic content -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Price History Chart -->
+            <section class="history">
+                <h2 class="section-title" data-i18n="price-history">Price History (24K 1 Tola)</h2>
+                
+                <!-- Price Chart -->
+                <div class="chart-container">
+                    <canvas id="priceChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                <span data-i18n="footer-text">Made with care for transparency</span>
+                <span class="separator">•</span>
+                <span data-i18n="privacy">100% Private & Offline</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+

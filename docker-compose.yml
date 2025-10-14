@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  goldpk-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: goldpk-web
+    ports:
+      - "8091:80"
+    restart: unless-stopped
+    networks:
+      - goldpk-network
+    labels:
+      - "com.goldpk.description=Gold Prices Pakistan Web App"
+    environment:
+      - TZ=Asia/Karachi
+
+networks:
+  goldpk-network:
+    driver: bridge
+
+
