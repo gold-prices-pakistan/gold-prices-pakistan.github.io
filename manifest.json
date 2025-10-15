@@ -2,7 +2,7 @@
   "name": "Gold Prices Pakistan",
   "short_name": "Gold PK",
   "description": "Real-time gold prices in Pakistan - سونے کی قیمتیں",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#FAFAF9",
   "theme_color": "#D4AF37",
@@ -30,7 +30,7 @@
       "name": "View Today's Price",
       "short_name": "Today",
       "description": "View today's gold price",
-      "url": "/"
+      "url": "./"
     }
   ]
 }

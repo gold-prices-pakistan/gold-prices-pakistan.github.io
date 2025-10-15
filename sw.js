@@ -7,16 +7,17 @@ const CACHE_NAME = 'goldpk-v1';
 const RUNTIME_CACHE = 'goldpk-runtime-v1';
 
 // Assets to cache on installation
+// Note: Use relative paths for GitHub Pages subdirectory support
 const ASSETS_TO_CACHE = [
-    '/',
-    '/index.html',
-    '/styles.css',
-    '/app.js',
-    '/manifest.json',
-    '/response-live.json',
-    '/response-history.json',
-    '/icon-192.png',
-    '/icon-512.png',
+    './',
+    './index.html',
+    './styles.css',
+    './app.js',
+    './manifest.json',
+    './response-live.json',
+    './response-history.json',
+    './icon-192.png',
+    './icon-512.png',
     'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'
 ];
 

@@ -564,14 +564,22 @@ function setupPWAInstall() {
     const iosBanner = document.getElementById('iosBanner');
     const iosBannerClose = document.getElementById('iosBannerClose');
     
+    console.log('📱 PWA Install Setup - Starting...');
+    console.log('Install button element:', installBtn ? 'Found ✓' : 'Not found ✗');
+    console.log('User Agent:', navigator.userAgent);
+    
     // Detect iOS
     const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
     const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+    
+    console.log('Is iOS?', isIOS);
+    console.log('Is in standalone mode?', isInStandaloneMode || window.matchMedia('(display-mode: standalone)').matches);
     
     // Show iOS banner if on iOS, not in standalone mode, and not dismissed
     if (isIOS && !isInStandaloneMode && iosBanner) {
         const iosBannerDismissed = localStorage.getItem('goldpk_ios_banner_dismissed');
         if (!iosBannerDismissed) {
+            console.log('📱 Showing iOS install banner');
             iosBanner.style.display = 'block';
         }
     }
@@ -586,8 +594,17 @@ function setupPWAInstall() {
         });
     }
     
+    // Check if already installed
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+        console.log('✅ PWA is already installed - button hidden');
+        return;
+    }
+    
+    console.log('⏳ Waiting for beforeinstallprompt event...');
+    
     // Listen for beforeinstallprompt event (Android/Desktop)
     window.addEventListener('beforeinstallprompt', (e) => {
+        console.log('🎉 beforeinstallprompt fired! PWA is installable');
         // Prevent the default mini-infobar from appearing
         e.preventDefault();
         // Store the event for later use
@@ -595,6 +612,9 @@ function setupPWAInstall() {
         // Show the install button
         if (installBtn) {
             installBtn.style.display = 'flex';
+            console.log('✅ Install button shown');
+        } else {
+            console.error('❌ Install button element not found!');
         }
     });
 
@@ -641,11 +661,15 @@ function setupPWAInstall() {
 async function registerServiceWorker() {
     if ('serviceWorker' in navigator) {
         try {
-            const registration = await navigator.serviceWorker.register('/sw.js');
-            console.log('ServiceWorker registered:', registration);
+            console.log('🔄 Registering Service Worker...');
+            const registration = await navigator.serviceWorker.register('./sw.js');
+            console.log('✅ ServiceWorker registered successfully:', registration);
+            console.log('Scope:', registration.scope);
         } catch (error) {
-            console.log('ServiceWorker registration failed:', error);
+            console.error('❌ ServiceWorker registration failed:', error);
         }
+    } else {
+        console.warn('⚠️ Service Workers not supported in this browser');
     }
 }
 
