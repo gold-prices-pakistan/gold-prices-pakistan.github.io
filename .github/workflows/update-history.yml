@@ -1,15 +1,15 @@
-name: Update Live Gold Prices
+name: Update Gold Price History
 
 on:
   schedule:
-    - cron: "0 4 * * *"   # 9:00 AM PKT
-    - cron: "0 22 * * *" 
+    - cron: "0 4 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
 jobs:
-  update-live-prices:
+  update-history:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,26 +19,22 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Set API Key
+      - name: Set up API Key
         run: echo "RAPIDAPI_KEY=${{ secrets.RAPIDAPI_KEY }}" >> $GITHUB_ENV
 
-      - name: Fetch Live Gold Prices
+      - name: Fetch Gold Price History
         run: |
           curl --silent \
             --request GET \
-            --url "https://gold-prices-pakistan.p.rapidapi.com/live" \
+            --url "https://gold-prices-pakistan.p.rapidapi.com/history" \
             --header "x-rapidapi-host: gold-prices-pakistan.p.rapidapi.com" \
             --header "x-rapidapi-key: ${RAPIDAPI_KEY}" \
-            -o live-prices.json
+            -o live-prices-history.json
 
-      - name: Commit & Push Changes
+      - name: Commit & Push History
         run: |
           git config user.name "goldpk-bot"
           git config user.email "thesaadarshad+goldpk@gmail.com"
-          git add -f live-prices.json
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
-          git commit -m "Auto Update: Live Gold Prices" || echo "Nothing to commit"
+          git add live-prices-history.json
+          git commit -m "Auto Update: Gold Price History" || echo "No changes to commit"
           git push
