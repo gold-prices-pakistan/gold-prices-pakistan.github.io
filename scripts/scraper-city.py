@@ -6,7 +6,7 @@ from datetime import datetime
 
 # City mapping: code -> full city name
 CITY_MAPPING = {
-    "khi": "karachi", "lhr": "lahore"
+    "khi": "karachi", "lhr": "lahore", "isb": "islamabad"
 }
 
 def scrape_city_data(city_code):
