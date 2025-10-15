@@ -20,7 +20,8 @@ const translations = {
         'privacy': '100% Private & Offline',
         'karat': 'Karat',
         'previous': 'Previous',
-        'next': 'Next'
+        'next': 'Next',
+        'install-app': 'Install'
     },
     ur: {
         'app-title': 'سونے کی قیمتیں پاکستان',
@@ -37,7 +38,8 @@ const translations = {
         'privacy': '100% نجی اور آف لائن',
         'karat': 'قیراط',
         'previous': 'پچھلا',
-        'next': 'اگلا'
+        'next': 'اگلا',
+        'install-app': 'انسٹال کریں'
     }
 };
 
@@ -57,6 +59,7 @@ class AppState {
         this.currentPage = 1;
         this.itemsPerPage = 10;
         this.priceChart = null;
+        this.deferredPrompt = null; // Store the install prompt event
     }
 
     loadPreference(key) {
@@ -543,6 +546,63 @@ function setupEventListeners() {
             renderPriceChart();
         });
     }
+
+    // PWA Install Button
+    setupPWAInstall();
+}
+
+// ============================================
+// PWA Install Handler
+// ============================================
+
+function setupPWAInstall() {
+    const installBtn = document.getElementById('installBtn');
+    
+    // Listen for beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+        // Prevent the default mini-infobar from appearing
+        e.preventDefault();
+        // Store the event for later use
+        appState.deferredPrompt = e;
+        // Show the install button
+        if (installBtn) {
+            installBtn.style.display = 'flex';
+        }
+    });
+
+    // Handle install button click
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            if (!appState.deferredPrompt) {
+                return;
+            }
+
+            // Show the install prompt
+            appState.deferredPrompt.prompt();
+
+            // Wait for the user's response
+            const { outcome } = await appState.deferredPrompt.userChoice;
+            
+            console.log(`User response to install prompt: ${outcome}`);
+
+            // Clear the deferred prompt
+            appState.deferredPrompt = null;
+
+            // Hide the install button
+            installBtn.style.display = 'none';
+        });
+    }
+
+    // Listen for app installed event
+    window.addEventListener('appinstalled', () => {
+        console.log('PWA installed successfully');
+        // Hide the install button
+        if (installBtn) {
+            installBtn.style.display = 'none';
+        }
+        // Clear the deferred prompt
+        appState.deferredPrompt = null;
+    });
 }
 
 
