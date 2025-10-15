@@ -422,10 +422,26 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 2px;
 }
 
-.hero-date {
+.price-date {
     font-size: var(--text-sm);
-    color: var(--color-text-secondary);
+    color: var(--color-gold-dark);
     font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.03em;
+    margin-bottom: var(--space-md);
+    padding-left: 0.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+[data-theme="dark"] .price-date {
+    color: var(--color-gold);
+}
+
+.price-date::before {
+    content: '📅';
+    font-size: 1.2rem;
 }
 
 /* Featured Prices Grid */
@@ -440,11 +456,16 @@ h1, h2, h3, h4, h5, h6 {
     background: linear-gradient(135deg, var(--color-gold-light) 0%, var(--color-surface) 100%);
     border: 2px solid var(--color-gold);
     border-radius: var(--radius-lg);
-    padding: var(--space-lg);
-    box-shadow: var(--shadow-xl);
+    padding: var(--space-xl);
+    box-shadow: 0 8px 32px rgba(212, 175, 55, 0.15), 0 4px 16px rgba(0, 0, 0, 0.1);
     transition: all var(--transition-base);
     position: relative;
     overflow: hidden;
+}
+
+.featured-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(212, 175, 55, 0.2), 0 6px 20px rgba(0, 0, 0, 0.15);
 }
 
 .featured-card::before {
@@ -471,19 +492,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .featured-karat {
-    background: var(--color-gold);
-    color: var(--color-surface);
-    padding: 0.25rem var(--space-sm);
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    color: #FFFFFF;
+    padding: 0.3rem 0.6rem;
     border-radius: var(--radius-sm);
     font-size: var(--text-xs);
     font-weight: 700;
     letter-spacing: 0.05em;
+    box-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
 }
 
 .featured-unit {
-    font-size: var(--text-sm);
-    font-weight: 600;
+    font-size: var(--text-md);
+    font-weight: 700;
     color: var(--color-text-primary);
+    letter-spacing: 0.02em;
 }
 
 .featured-price {
@@ -567,13 +590,61 @@ h1, h2, h3, h4, h5, h6 {
     font-style: italic;
 }
 
+.scroll-hint {
+    display: none;
+    font-size: 0.7rem;
+    color: var(--color-gold);
+    text-align: center;
+    margin-top: var(--space-xs);
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+    animation: pulseHint 2s ease-in-out infinite;
+}
+
+@keyframes pulseHint {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .scroll-hint {
+        display: block;
+    }
+}
+
 /* Matrix Table */
 .matrix-table-container {
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: visible;
     box-shadow: var(--shadow-md);
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    position: relative;
+}
+
+/* Scroll hint shadow on right edge */
+.matrix-table-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 20px;
+    background: linear-gradient(to left, var(--color-surface), transparent);
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .matrix-table-container::after {
+        display: block;
+    }
 }
 
 .matrix-table {
@@ -722,10 +793,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    color: var(--color-text-primary);
+    font-size: var(--text-xl);
+    font-weight: 800;
+    color: var(--color-gold-dark);
     margin-bottom: var(--space-lg);
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] .section-title {
+    color: var(--color-gold);
 }
 
 .table-container {
@@ -880,8 +957,13 @@ h1, h2, h3, h4, h5, h6 {
         margin-bottom: 0.25rem;
     }
     
-    .hero-date {
-        font-size: 0.75rem;
+    .price-date {
+        font-size: 0.85rem;
+        margin-bottom: var(--space-sm);
+    }
+    
+    .price-date::before {
+        font-size: 1rem;
     }
     
     /* Much more compact featured cards */
@@ -890,8 +972,8 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-card {
-        padding: var(--space-sm) var(--space-md);
-        border-width: 1.5px;
+        padding: var(--space-md) var(--space-lg);
+        border-width: 2px;
     }
     
     .featured-card::before {
@@ -904,12 +986,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-karat {
-        font-size: 0.65rem;
-        padding: 0.15rem 0.4rem;
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
     }
     
     .featured-unit {
-        font-size: 0.75rem;
+        font-size: 1rem;
     }
     
     .featured-price {
@@ -917,17 +999,18 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-currency {
-        font-size: 0.85rem;
+        font-size: 1rem;
     }
     
     .featured-amount {
-        font-size: 1.5rem;
+        font-size: 2rem;
         letter-spacing: -0.03em;
         font-weight: 800;
     }
     
     .section-title {
         font-size: var(--text-md);
+        margin-bottom: var(--space-md);
     }
     
     .all-prices-title {
@@ -985,8 +1068,13 @@ h1, h2, h3, h4, h5, h6 {
         height: 3px;
     }
     
-    .hero-date {
-        font-size: 0.7rem;
+    .price-date {
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .price-date::before {
+        font-size: 0.95rem;
     }
     
     /* Ultra compact featured cards on small mobile */
@@ -995,8 +1083,9 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-card {
-        padding: 0.5rem 0.75rem;
-        border-radius: var(--radius-md);
+        padding: var(--space-md);
+        border-radius: var(--radius-lg);
+        border-width: 2px;
     }
     
     .featured-card::before {
@@ -1008,12 +1097,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-karat {
-        font-size: 0.6rem;
-        padding: 0.1rem 0.35rem;
+        font-size: 0.65rem;
+        padding: 0.15rem 0.4rem;
     }
     
     .featured-unit {
-        font-size: 0.7rem;
+        font-size: 0.9rem;
     }
     
     .featured-price {
@@ -1021,12 +1110,17 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-currency {
-        font-size: 0.75rem;
+        font-size: 0.9rem;
     }
     
     .featured-amount {
-        font-size: 1.35rem;
+        font-size: 1.75rem;
         font-weight: 800;
+    }
+    
+    .section-title {
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-sm);
     }
     
     .all-prices-title {

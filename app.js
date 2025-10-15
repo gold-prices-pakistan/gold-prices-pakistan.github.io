@@ -23,7 +23,9 @@ const translations = {
         'next': 'Next',
         'install-app': 'Install',
         'ios-install-title': 'Install this app',
-        'ios-install-hint': 'Tap Share → Add to Home Screen'
+        'ios-install-hint': 'Tap Share → Add to Home Screen',
+        'scroll-hint': '← Swipe to see all rates →',
+        'as-of': 'As of'
     },
     ur: {
         'app-title': 'سونے کی قیمتیں پاکستان',
@@ -43,7 +45,9 @@ const translations = {
         'next': 'اگلا',
         'install-app': 'انسٹال کریں',
         'ios-install-title': 'یہ ایپ انسٹال کریں',
-        'ios-install-hint': 'شیئر → ہوم اسکرین میں شامل کریں'
+        'ios-install-hint': 'شیئر → ہوم اسکرین میں شامل کریں',
+        'scroll-hint': '→ تمام قیمتیں دیکھنے کے لیے سوائپ کریں ←',
+        'as-of': 'بتاریخ'
     }
 };
 
@@ -239,7 +243,8 @@ function renderFeaturedPrices() {
     // Update date
     const dateElement = document.getElementById('currentDate');
     if (dateElement) {
-        dateElement.textContent = formatDate(currentDate);
+        const asOfText = translations[appState.currentLang]['as-of'];
+        dateElement.textContent = `${asOfText} ${formatDate(currentDate)}`;
     }
 
     // Featured cards: 24K for 1 Tola, 10 Gram, 1 Gram
@@ -442,19 +447,7 @@ function renderPriceChart() {
             },
             plugins: {
                 legend: {
-                    display: true,
-                    position: 'top',
-                    labels: {
-                        color: textColor,
-                        font: {
-                            family: 'Inter, sans-serif',
-                            size: 13,
-                            weight: 600
-                        },
-                        padding: 15,
-                        usePointStyle: true,
-                        pointStyle: 'circle'
-                    }
+                    display: false
                 },
                 tooltip: {
                     backgroundColor: isDark ? '#1C1917' : '#FFFFFF',
