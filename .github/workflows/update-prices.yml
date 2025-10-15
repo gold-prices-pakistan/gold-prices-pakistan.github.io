@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "0 4 * * *"   # 9:00 AM PKT
     - cron: "0 22 * * *" 
+  workflow_dispatch:
 
 permissions:
   contents: write
