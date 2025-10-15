@@ -142,7 +142,7 @@ const appState = new AppState();
 
 async function loadLiveData() {
     try {
-        const response = await fetch('response-live.json');
+        const response = await fetch('live-prices.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -158,7 +158,7 @@ async function loadLiveData() {
 
 async function loadHistoryData() {
     try {
-        const response = await fetch('response-history.json');
+        const response = await fetch('live-prices-history.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

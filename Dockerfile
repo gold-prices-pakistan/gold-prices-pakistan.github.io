@@ -15,8 +15,8 @@ COPY styles.css .
 COPY app.js .
 COPY manifest.json .
 COPY sw.js .
-COPY response-live.json .
-COPY response-history.json .
+COPY live-prices.json .
+COPY live-prices-history.json .
 COPY robots.txt .
 COPY sitemap.xml .
 

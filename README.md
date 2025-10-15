@@ -54,8 +54,10 @@ goldpk/
 ├── app.js                  # Core application logic
 ├── manifest.json           # PWA manifest
 ├── sw.js                   # Service Worker for offline support
-├── response-live.json      # Live gold prices (all karats & units)
-├── response-history.json   # Historical price data (24K 1 Tola)
+├── live-prices.json        # Live gold prices (auto-updated by workflow)
+├── live-prices-history.json # Historical price data (auto-updated by workflow)
+├── response-live.json      # Backup (not used)
+├── response-history.json   # Backup (not used)
 ├── robots.txt              # Search engine directives
 ├── sitemap.xml             # Site structure for SEO
 ├── icon-192.png            # PWA icon (192x192)
@@ -186,7 +188,17 @@ git push
 
 ## 🔄 Updating Gold Prices
 
-### Live Prices (`response-live.json`)
+### Automatic Updates (via GitHub Actions)
+
+Gold prices are automatically updated by GitHub Actions workflow:
+- Workflow fetches data from RapidAPI
+- Updates `live-prices.json` and `live-prices-history.json`
+- Commits and pushes changes automatically
+- Website updates within 1-2 minutes
+
+### Manual Updates (if needed)
+
+#### Live Prices (`live-prices.json`)
 
 Edit with current prices for all karats and units:
 
@@ -201,7 +213,7 @@ Edit with current prices for all karats and units:
 
 Format: Each array contains prices for [24K, 22K, 21K, 18K, 12K]
 
-### Historical Prices (`response-history.json`)
+#### Historical Prices (`live-prices-history.json`)
 
 Add daily 24K 1 Tola prices:
 
@@ -217,8 +229,8 @@ Format: `"DD MMM YYYY": price_in_pkr` (24K 1 Tola)
 
 Then commit and push:
 ```bash
-git add response-live.json response-history.json
-git commit -m "Update gold prices for $(date +%Y-%m-%d)"
+git add live-prices.json live-prices-history.json
+git commit -m "Manual update: Gold prices $(date +%Y-%m-%d)"
 git push
 ```
 

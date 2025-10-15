@@ -14,8 +14,8 @@ const ASSETS_TO_CACHE = [
     './styles.css',
     './app.js',
     './manifest.json',
-    './response-live.json',
-    './response-history.json',
+    './live-prices.json',
+    './live-prices-history.json',
     './icon-192.png',
     './icon-512.png',
     'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'
