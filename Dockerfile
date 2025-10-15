@@ -20,9 +20,9 @@ COPY response-history.json .
 COPY robots.txt .
 COPY sitemap.xml .
 
-# Copy placeholder icons (will be replaced with actual icons)
-# For now, create empty placeholder files
-RUN touch icon-192.png icon-512.png
+# Copy icons (PWA and favicons)
+COPY icon-192.png .
+COPY icon-512.png .
 
 # Copy custom nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf

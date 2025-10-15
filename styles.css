@@ -229,6 +229,23 @@ h1, h2, h3, h4, h5, h6 {
     gap: var(--space-sm);
 }
 
+.logo-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    text-decoration: none;
+    color: inherit;
+    transition: opacity var(--transition-fast);
+}
+
+.logo-link:hover {
+    opacity: 0.8;
+}
+
+.logo-link:active {
+    opacity: 0.6;
+}
+
 .logo-icon {
     font-size: var(--text-lg);
 }
@@ -900,12 +917,13 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-currency {
-        font-size: 0.7rem;
+        font-size: 0.85rem;
     }
     
     .featured-amount {
-        font-size: var(--text-md);
+        font-size: 1.5rem;
         letter-spacing: -0.03em;
+        font-weight: 800;
     }
     
     .section-title {
@@ -1003,11 +1021,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .featured-currency {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
     
     .featured-amount {
-        font-size: var(--text-sm);
+        font-size: 1.35rem;
+        font-weight: 800;
     }
     
     .all-prices-title {
