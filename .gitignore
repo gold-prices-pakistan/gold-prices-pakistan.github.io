@@ -5,6 +5,9 @@
 # Documentation (kept locally only)
 DOC/
 
+# Testing files (API testing output)
+live-prices.json
+
 # Operating System Files
 .DS_Store
 .DS_Store?
@@ -85,8 +88,8 @@ temp/
 # - app.js
 # - manifest.json
 # - sw.js
-# - response-live.json
-# - response-history.json
+# - response-live.json (website data)
+# - response-history.json (website data)
 # - icon-192.png
 # - icon-512.png
 # - robots.txt
@@ -98,5 +101,4 @@ temp/
 # - .dockerignore
 # 
 # Note: DOC/ folder is intentionally ignored (local documentation only)
-
-
+# Note: live-prices.json is for API testing only (not used by website)
