@@ -292,6 +292,10 @@ h1, h2, h3, h4, h5, h6 {
     border-left-color: var(--color-gold);
 }
 
+[data-theme="dark"] .footer-disclaimer-text {
+    color: var(--color-text-secondary);
+}
+
 .footer-disclaimer-title {
     font-size: var(--text-sm);
     font-weight: 700;
@@ -306,8 +310,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-disclaimer-text {
-    font-size: var(--text-xs);
-    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    color: var(--color-text-primary);
     line-height: 1.6;
     margin-bottom: var(--space-sm);
 }
@@ -324,8 +328,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-text {
-    color: var(--color-text-secondary);
-    font-size: var(--text-xs);
+    color: var(--color-text-primary);
+    font-size: var(--text-sm);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -344,8 +348,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-copyright p {
-    font-size: var(--text-xs);
-    color: var(--color-text-tertiary);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
 }
 
 .footer-link {
@@ -677,11 +681,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .field-input[type="number"] {
     -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .field-input[type="number"]::-webkit-outer-spin-button,
 .field-input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+    appearance: none;
     margin: 0;
 }
 
@@ -1313,7 +1319,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .scroll-hint {
     display: none;
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     color: var(--color-gold);
     text-align: center;
     margin-top: var(--space-xs);
@@ -1739,7 +1745,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .all-prices-subtitle {
-        font-size: 0.75rem;
+        font-size: 0.875rem;
     }
     
     .chart-container {
@@ -1758,7 +1764,7 @@ h1, h2, h3, h4, h5, h6 {
     .matrix-table th,
     .matrix-table td {
         padding: var(--space-sm);
-        font-size: 0.8rem;
+        font-size: 0.875rem;
     }
 }
 
@@ -1790,12 +1796,12 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .price-date {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
         margin-bottom: 0.5rem;
     }
     
     .price-date::before {
-        font-size: 0.95rem;
+        font-size: 1rem;
     }
     
     /* Ultra compact featured cards on small mobile */
@@ -1849,7 +1855,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .all-prices-subtitle {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
     
     .chart-container {
@@ -1862,19 +1868,19 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .footer-disclaimer-title {
-        font-size: 0.8rem;
+        font-size: 0.875rem;
     }
     
     .footer-disclaimer-text {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
     
     .footer-text {
-        font-size: 0.7rem;
+        font-size: 0.75rem;
     }
     
     .footer-copyright p {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
     }
 }
 
