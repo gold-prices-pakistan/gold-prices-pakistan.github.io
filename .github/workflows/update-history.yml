@@ -1,8 +1,8 @@
 name: Update Gold Price History
 
 on:
-  schedule:
-    - cron: "5 7 * * *"
+  # schedule:
+  #   - cron: "5 7 * * *"
   workflow_dispatch:
 
 permissions:
