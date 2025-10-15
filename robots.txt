@@ -9,7 +9,7 @@ Disallow: /*.md$
 Disallow: /DOC/
 
 # Sitemaps
-Sitemap: https://goldpk.github.io/gold-prices-pakistan/sitemap.xml
+Sitemap: https://gold-prices-pakistan.github.io/sitemap.xml
 
 # Crawl-delay
 Crawl-delay: 1

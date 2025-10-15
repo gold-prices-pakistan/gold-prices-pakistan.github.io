@@ -43,7 +43,7 @@ A beautiful, minimalist web application for tracking gold prices in Pakistan. Bu
 - ✅ **Bilingual SEO** - English & Urdu support
 - ✅ **Pakistan Geo-targeting** - Local search optimization
 
-**Live at:** https://goldpk.github.io/gold-prices-pakistan/
+**Live at:** https://gold-prices-pakistan.github.io/
 
 ## 📦 Project Structure
 
