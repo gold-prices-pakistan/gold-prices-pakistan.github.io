@@ -1,0 +1,33 @@
+name: Update Gold Prices
+
+on:
+#  schedule:
+#    - cron: "0 */6 * * *"   # Every 6 hours
+  workflow_dispatch:        # Manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up API Key
+        run: echo "RAPIDAPI_KEY=${{ secrets.RAPIDAPI_KEY }}" >> $GITHUB_ENV
+
+      - name: Run Update Script
+        run: |
+          chmod +x scripts/update_prices.sh
+          ./scripts/update_prices.sh
+
+      - name: Commit Changes
+        run: |
+          git config user.name "goldpk-bot"
+          git config user.email "thesaadarshad+goldpk@gmail.com"
+          git add live-prices.json
+          git commit -m "Auto Update: Live Gold Prices" || echo "No changes to commit"
+          git push
+
