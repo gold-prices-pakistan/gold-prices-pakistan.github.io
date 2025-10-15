@@ -168,8 +168,13 @@
                     <h1 class="hero-title" data-i18n="today-price">Gold Price in Pakistan Today</h1>
                 </div>
 
-                <!-- Date Display -->
-                <div class="price-date" id="currentDate"></div>
+                <!-- Date Display with City Selector -->
+                <div class="date-city-row">
+                    <div class="price-date" id="currentDate"></div>
+                    <select id="citySelector" class="city-selector" aria-label="Select City">
+                        <option value="">🇵🇰 Pakistan</option>
+                    </select>
+                </div>
 
                 <!-- Featured Prices Grid -->
                 <div class="featured-prices">
@@ -495,7 +500,7 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <script src="app.js?v=2.0.0"></script>
+    <script src="app.js?v=3.0.0"></script>
 </body>
 </html>
 

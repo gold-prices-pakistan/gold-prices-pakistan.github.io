@@ -10,6 +10,8 @@ const translations = {
         'tab-prices': 'Gold Prices In Pakistan',
         'tab-zakat': 'My Zakat Calculator',
         'today-price': 'Gold Price in Pakistan Today',
+        'gold-price-in': 'Gold Price in',
+        'today': 'Today',
         'matrix-title': 'Rate Chart by Karat & Weight',
         'matrix-subtitle': 'All gold types and weight units at a glance',
         'zakat-title': 'My Zakat Calculator',
@@ -60,6 +62,8 @@ const translations = {
         'tab-prices': 'پاکستان میں سونے کی قیمتیں',
         'tab-zakat': 'میری زکوٰۃ کیلکولیٹر',
         'today-price': 'آج پاکستان میں سونے کی قیمت',
+        'gold-price-in': 'میں سونے کی قیمت',
+        'today': 'آج',
         'matrix-title': 'قیراط اور وزن کے لحاظ سے نرخ چارٹ',
         'matrix-subtitle': 'تمام قسمیں اور وزن ایک نظر میں',
         'zakat-title': 'میری زکوٰۃ کیلکولیٹر',
@@ -115,6 +119,9 @@ class AppState {
     constructor() {
         this.liveData = null;
         this.historyData = null;
+        this.cityData = null; // City-specific data
+        this.scrapedAt = null; // Timestamp from scraper data
+        this.selectedCity = this.loadPreference('city') || null; // null = Pakistan national, or city_code like "KHI"
         this.currentLang = this.loadPreference('language') || 'en';
         this.currentTheme = this.loadPreference('theme') || 'dark'; // Default to dark mode
         this.selectedUnit = this.loadPreference('unit') || '1 Tola';
@@ -173,6 +180,22 @@ class AppState {
     getKaratName() {
         return this.karats[this.selectedKarat] || '24 Karat';
     }
+
+    setCity(cityCode) {
+        this.selectedCity = cityCode;
+        if (cityCode) {
+            this.savePreference('city', cityCode);
+        } else {
+            localStorage.removeItem('goldpk_city');
+        }
+        return this.selectedCity;
+    }
+
+    getCityName() {
+        if (!this.selectedCity || !this.cityData) return 'Pakistan';
+        const city = this.cityData.cities.find(c => c.city_code === this.selectedCity);
+        return city ? city.city_name : 'Pakistan';
+    }
 }
 
 const appState = new AppState();
@@ -183,13 +206,27 @@ const appState = new AppState();
 
 async function loadLiveData() {
     try {
-        const response = await fetch('live-prices.json');
+        const response = await fetch('data/scraper-live-data.json', {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        appState.liveData = data;
-        return data;
+        const rawData = await response.json();
+        
+        // Transform price_matrix to expected format: { "1 Tola": [prices], ... }
+        const transformedData = rawData.price_matrix || {};
+        
+        // Store the scraped_at timestamp for later use
+        appState.scrapedAt = rawData.scraped_at;
+        
+        appState.liveData = transformedData;
+        return transformedData;
     } catch (error) {
         console.error('Error loading live data:', error);
         appState.liveData = {};
@@ -199,13 +236,29 @@ async function loadLiveData() {
 
 async function loadHistoryData() {
     try {
-        const response = await fetch('live-prices-history.json');
+        const response = await fetch('data/scraper-live-data.json', {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const data = await response.json();
-        appState.historyData = data;
-        return data;
+        const rawData = await response.json();
+        
+        // Transform historical_data.records to expected format: { "date": price }
+        const records = rawData.historical_data?.records || [];
+        const transformedData = {};
+        
+        records.forEach(record => {
+            transformedData[record.date] = record.price;
+        });
+        
+        appState.historyData = transformedData;
+        return transformedData;
     } catch (error) {
         console.error('Error loading history data:', error);
         appState.historyData = {};
@@ -213,8 +266,31 @@ async function loadHistoryData() {
     }
 }
 
+async function loadCityData() {
+    try {
+        const response = await fetch('data/scraper-city-data.json', {
+            cache: 'no-store',
+            headers: {
+                'Cache-Control': 'no-cache, no-store, must-revalidate',
+                'Pragma': 'no-cache',
+                'Expires': '0'
+            }
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        appState.cityData = data;
+        return data;
+    } catch (error) {
+        console.error('Error loading city data:', error);
+        appState.cityData = null;
+        return null;
+    }
+}
+
 async function loadAllData() {
-    await Promise.all([loadLiveData(), loadHistoryData()]);
+    await Promise.all([loadLiveData(), loadHistoryData(), loadCityData()]);
 }
 
 // ============================================
@@ -286,24 +362,16 @@ function calculateChange(current, previous) {
 
 function renderFeaturedPrices() {
     const liveData = appState.liveData;
-    const historyData = appState.historyData;
     
-    if (!liveData || !historyData) {
+    if (!liveData) {
         return;
     }
 
-    const historyEntries = Object.entries(historyData).sort((a, b) => 
-        new Date(b[0]) - new Date(a[0])
-    );
-    
-    const currentDate = historyEntries.length > 0 ? historyEntries[0][0] : new Date().toLocaleDateString('en-PK', { day: '2-digit', month: 'short', year: 'numeric' });
-    const previousPrice24k = historyEntries.length > 1 ? historyEntries[1][1] : historyEntries[0][1];
-
-    // Update date
+    // Update date using scraped_at timestamp
     const dateElement = document.getElementById('currentDate');
-    if (dateElement) {
+    if (dateElement && appState.scrapedAt) {
         const asOfText = translations[appState.currentLang]['as-of'];
-        dateElement.textContent = `${asOfText} ${formatDate(currentDate)}`;
+        dateElement.textContent = `${asOfText} ${formatDate(appState.scrapedAt)}`;
     }
 
     // Featured cards: 24K for 1 Tola, 10 Gram, 1 Gram
@@ -450,13 +518,49 @@ function renderPriceChart() {
     
     if (!data || !canvas) return;
 
+    // Parse date string - handles both "09Oct 7:39pm" and "15 Oct 2025" formats
+    function parseScrapedDate(dateStr) {
+        // Try to parse as standard date first (handles "15 Oct 2025" format)
+        const standardDate = new Date(dateStr);
+        if (!isNaN(standardDate.getTime())) {
+            return standardDate;
+        }
+        
+        // Handle "09Oct 7:39pm" format
+        const match = dateStr.match(/(\d+)(\w+)/);
+        if (match) {
+            const day = match[1];
+            const month = match[2];
+            const year = new Date().getFullYear();
+            return new Date(`${month} ${day}, ${year}`);
+        }
+        
+        return new Date(); // Ultimate fallback
+    }
+
     const entries = Object.entries(data).sort((a, b) => 
-        new Date(a[0]) - new Date(b[0]) // Chronological order for chart
+        parseScrapedDate(a[0]) - parseScrapedDate(b[0]) // Chronological order: oldest to newest (left to right)
     );
 
     const labels = entries.map(entry => {
-        const date = new Date(entry[0]);
-        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        const dateStr = entry[0];
+        
+        // Try to parse as a proper date first
+        const parsedDate = parseScrapedDate(dateStr);
+        if (!isNaN(parsedDate.getTime())) {
+            // Format as "Mon DD"
+            return parsedDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+        
+        // Fallback: extract day and month from string
+        const match = dateStr.match(/(\d+)\s*(\w+)/);
+        if (match) {
+            const day = match[1];
+            const month = match[2];
+            return `${month} ${day}`;
+        }
+        
+        return dateStr;
     });
 
     const prices = entries.map(entry => entry[1]);
@@ -560,12 +664,128 @@ function renderPriceChart() {
     });
 }
 
+// ============================================
+// City Selection Helpers
+// ============================================
+
+function populateCityDropdown() {
+    const selector = document.getElementById('citySelector');
+    if (!selector || !appState.cityData) return;
+
+    // City emojis mapping
+    const cityEmojis = {
+        'KHI': '🏙️',
+        'LHR': '🕌'
+    };
+
+    // Clear existing options except Pakistan
+    selector.innerHTML = '<option value="">🇵🇰 Pakistan</option>';
+
+    // Add city options
+    appState.cityData.cities.forEach(city => {
+        const option = document.createElement('option');
+        option.value = city.city_code;
+        const emoji = cityEmojis[city.city_code] || '📍';
+        option.textContent = `${emoji} ${city.city_name}`;
+        selector.appendChild(option);
+    });
+
+    // Set selected value
+    if (appState.selectedCity) {
+        selector.value = appState.selectedCity;
+    }
+}
+
+function getCurrentData() {
+    // If a city is selected, transform city data to match expected format
+    if (appState.selectedCity && appState.cityData) {
+        const city = appState.cityData.cities.find(c => c.city_code === appState.selectedCity);
+        if (city) {
+            // Transform city rates to match liveData format
+            const transformedLiveData = {
+                '1 Tola': [],
+                '10 Gram': [],
+                '1 Gram': [],
+                '1 Ounce': []
+            };
+
+            // City data only has 24K rates in the rates array
+            // We'll use daily_price_history to get all karat prices for the latest date
+            const latestDay = city.daily_price_history.prices[0];
+            
+            if (latestDay) {
+                // Build price arrays for each weight: [24K, 22K, 21K, 18K, 12K]
+                transformedLiveData['1 Tola'] = [
+                    latestDay['1_tola'],
+                    latestDay['1_tola'] * 0.916,  // 22K approximation
+                    latestDay['1_tola'] * 0.875,  // 21K approximation
+                    latestDay['1_tola'] * 0.75,   // 18K approximation
+                    latestDay['1_tola'] * 0.5     // 12K approximation
+                ];
+                
+                transformedLiveData['10 Gram'] = [
+                    latestDay['10_gram'],
+                    latestDay['10_gram'] * 0.916,
+                    latestDay['10_gram'] * 0.875,
+                    latestDay['10_gram'] * 0.75,
+                    latestDay['10_gram'] * 0.5
+                ];
+                
+                transformedLiveData['1 Gram'] = [
+                    latestDay['24k_per_gram'],
+                    latestDay['22k_per_gram'],
+                    latestDay['21k_per_gram'],
+                    latestDay['18k_per_gram'],
+                    latestDay['24k_per_gram'] * 0.5  // 12K approximation
+                ];
+                
+                // Approximate 1 Ounce (31.1035 grams)
+                transformedLiveData['1 Ounce'] = transformedLiveData['1 Gram'].map(price => price * 31.1035);
+            }
+
+            // Transform history data
+            const transformedHistoryData = {};
+            city.daily_price_history.prices.forEach(day => {
+                transformedHistoryData[day.date] = day['1_tola'];
+            });
+
+            return {
+                liveData: transformedLiveData,
+                historyData: transformedHistoryData,
+                scrapedAt: appState.cityData.scraped_at
+            };
+        }
+    }
+
+    // Return national data
+    return {
+        liveData: appState.liveData,
+        historyData: appState.historyData,
+        scrapedAt: appState.scrapedAt
+    };
+}
+
 function renderUI() {
-    if (!appState.liveData || !appState.historyData) return;
+    const data = getCurrentData();
+    if (!data.liveData || !data.historyData) return;
+
+    // Temporarily set the data for rendering
+    const originalLiveData = appState.liveData;
+    const originalHistoryData = appState.historyData;
+    const originalScrapedAt = appState.scrapedAt;
+
+    appState.liveData = data.liveData;
+    appState.historyData = data.historyData;
+    appState.scrapedAt = data.scrapedAt;
 
     renderFeaturedPrices();
     renderAllPricesTable();
     renderPriceChart();
+
+    // Restore original data
+    appState.liveData = originalLiveData;
+    appState.historyData = originalHistoryData;
+    appState.scrapedAt = originalScrapedAt;
 }
 
 // ============================================
@@ -581,6 +801,16 @@ function updateLanguageToggle() {
 }
 
 function setupEventListeners() {
+    // City Selector
+    const citySelector = document.getElementById('citySelector');
+    if (citySelector) {
+        citySelector.addEventListener('change', (e) => {
+            const cityCode = e.target.value || null;
+            appState.setCity(cityCode);
+            renderUI();
+        });
+    }
+
     // Tab Navigation
     const tabButtons = document.querySelectorAll('.tab-btn');
     tabButtons.forEach(btn => {
@@ -980,6 +1210,10 @@ async function init() {
 
     // Load and render data
     await loadAllData();
+    
+    // Populate city dropdown
+    populateCityDropdown();
+    
     renderUI();
 
     // Initialize Zakat calculator with first entry if on zakat tab

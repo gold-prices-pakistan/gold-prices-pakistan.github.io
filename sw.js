@@ -3,8 +3,8 @@
 // Gold Prices Pakistan
 // ============================================
 
-const CACHE_NAME = 'goldpk-v1';
-const RUNTIME_CACHE = 'goldpk-runtime-v1';
+const CACHE_NAME = 'goldpk-v3';
+const RUNTIME_CACHE = 'goldpk-runtime-v3';
 
 // Assets to cache on installation
 // Note: Use relative paths for GitHub Pages subdirectory support
@@ -14,11 +14,10 @@ const ASSETS_TO_CACHE = [
     './styles.css',
     './app.js',
     './manifest.json',
-    './live-prices.json',
-    './live-prices-history.json',
     './icon-192.png',
     './icon-512.png',
     'https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js'
+    // Note: JSON data files in /data/ are NOT cached - always fetched fresh
 ];
 
 // ============================================
@@ -81,6 +80,30 @@ self.addEventListener('fetch', (event) => {
 
     // Skip cross-origin requests
     if (!event.request.url.startsWith(self.location.origin)) {
+        return;
+    }
+
+    // Always fetch fresh data for JSON files in data/ directory (no caching)
+    if (event.request.url.includes('/data/') && event.request.url.endsWith('.json')) {
+        console.log('[ServiceWorker] Bypassing cache for data JSON:', event.request.url);
+        event.respondWith(
+            fetch(event.request, {
+                cache: 'no-store'
+            }).catch((error) => {
+                console.error('[ServiceWorker] Fetch failed for data JSON:', error);
+                return new Response(
+                    JSON.stringify({
+                        error: 'Offline',
+                        message: 'No internet connection'
+                    }),
+                    {
+                        headers: { 'Content-Type': 'application/json' },
+                        status: 503,
+                        statusText: 'Service Unavailable'
+                    }
+                );
+            })
+        );
         return;
     }
 

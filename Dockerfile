@@ -15,10 +15,11 @@ COPY styles.css .
 COPY app.js .
 COPY manifest.json .
 COPY sw.js .
-COPY live-prices.json .
-COPY live-prices-history.json .
 COPY robots.txt .
 COPY sitemap.xml .
+
+# Copy data directory with scraped JSON files
+COPY data/ ./data/
 
 # Copy icons (PWA and favicons)
 COPY icon-192.png .
