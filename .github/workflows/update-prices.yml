@@ -2,8 +2,8 @@ name: Update Live Gold Prices
 
 on:
   schedule:
-    - cron: "0 4 * * *"   # 9:00 AM PKT
-    - cron: "0 22 * * *" 
+    - cron: "0 7 * * *" 
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
