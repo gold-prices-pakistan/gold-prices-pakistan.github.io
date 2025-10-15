@@ -2,9 +2,11 @@
 
 User-agent: *
 Allow: /
+Allow: /#zakat
 Disallow: /test-local.sh
 Disallow: /create-icons.py
 Disallow: /*.md$
+Disallow: /DOC/
 
 # Sitemaps
 Sitemap: https://goldpk.github.io/gold-prices-pakistan/sitemap.xml

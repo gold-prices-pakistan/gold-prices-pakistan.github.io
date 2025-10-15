@@ -16,8 +16,19 @@
         <image:image>
             <image:loc>https://goldpk.github.io/gold-prices-pakistan/icon-512.png</image:loc>
             <image:title>Gold Prices Pakistan Logo</image:title>
-            <image:caption>Live gold rates in Pakistan</image:caption>
+            <image:caption>Live gold rates in Pakistan with Zakat Calculator</image:caption>
         </image:image>
+    </url>
+    
+    <!-- Zakat Calculator Feature -->
+    <url>
+        <loc>https://goldpk.github.io/gold-prices-pakistan/#zakat</loc>
+        <lastmod>2025-10-15</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
+        <mobile:mobile/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://goldpk.github.io/gold-prices-pakistan/#zakat"/>
+        <xhtml:link rel="alternate" hreflang="ur" href="https://goldpk.github.io/gold-prices-pakistan/#zakat"/>
     </url>
     
 </urlset>
