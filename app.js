@@ -900,11 +900,13 @@ function setupEventListeners() {
 
 function setupPWAInstall() {
     const installBtn = document.getElementById('installBtn');
+    const mobileInstallBtn = document.getElementById('mobileInstallBtn');
     const iosBanner = document.getElementById('iosBanner');
     const iosBannerClose = document.getElementById('iosBannerClose');
     
     console.log('📱 PWA Install Setup - Starting...');
     console.log('Install button element:', installBtn ? 'Found ✓' : 'Not found ✗');
+    console.log('Mobile install button:', mobileInstallBtn ? 'Found ✓' : 'Not found ✗');
     console.log('User Agent:', navigator.userAgent);
     
     // Detect iOS
@@ -935,11 +937,39 @@ function setupPWAInstall() {
     
     // Check if already installed
     if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log('✅ PWA is already installed - button hidden');
+        console.log('✅ PWA is already installed - buttons hidden');
         return;
     }
     
     console.log('⏳ Waiting for beforeinstallprompt event...');
+    
+    // Install handler function (shared by both buttons)
+    async function handleInstallClick() {
+        if (!appState.deferredPrompt) {
+            return;
+        }
+
+        // Show the install prompt
+        appState.deferredPrompt.prompt();
+
+        // Wait for the user's response
+        const { outcome } = await appState.deferredPrompt.userChoice;
+        
+        console.log(`User response to install prompt: ${outcome}`);
+
+        // Clear the deferred prompt
+        appState.deferredPrompt = null;
+
+        // Hide both install buttons
+        if (installBtn) installBtn.style.display = 'none';
+        if (mobileInstallBtn) mobileInstallBtn.style.display = 'none';
+        
+        // Close mobile menu if open
+        const mobileMenu = document.getElementById('mobileMenu');
+        if (mobileMenu) {
+            mobileMenu.classList.remove('active');
+        }
+    }
     
     // Listen for beforeinstallprompt event (Android/Desktop)
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -948,45 +978,34 @@ function setupPWAInstall() {
         e.preventDefault();
         // Store the event for later use
         appState.deferredPrompt = e;
-        // Show the install button
+        
+        // Show the install buttons
         if (installBtn) {
             installBtn.style.display = 'flex';
             console.log('✅ Install button shown');
-        } else {
-            console.error('❌ Install button element not found!');
+        }
+        if (mobileInstallBtn) {
+            mobileInstallBtn.style.display = 'flex';
+            console.log('✅ Mobile install button shown');
         }
     });
 
-    // Handle install button click
+    // Handle desktop install button click
     if (installBtn) {
-        installBtn.addEventListener('click', async () => {
-            if (!appState.deferredPrompt) {
-                return;
-            }
-
-            // Show the install prompt
-            appState.deferredPrompt.prompt();
-
-            // Wait for the user's response
-            const { outcome } = await appState.deferredPrompt.userChoice;
-            
-            console.log(`User response to install prompt: ${outcome}`);
-
-            // Clear the deferred prompt
-            appState.deferredPrompt = null;
-
-            // Hide the install button
-            installBtn.style.display = 'none';
-        });
+        installBtn.addEventListener('click', handleInstallClick);
+    }
+    
+    // Handle mobile install button click
+    if (mobileInstallBtn) {
+        mobileInstallBtn.addEventListener('click', handleInstallClick);
     }
 
     // Listen for app installed event
     window.addEventListener('appinstalled', () => {
         console.log('PWA installed successfully');
-        // Hide the install button
-        if (installBtn) {
-            installBtn.style.display = 'none';
-        }
+        // Hide both install buttons
+        if (installBtn) installBtn.style.display = 'none';
+        if (mobileInstallBtn) mobileInstallBtn.style.display = 'none';
         // Clear the deferred prompt
         appState.deferredPrompt = null;
     });

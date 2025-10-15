@@ -469,6 +469,23 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-gold);
 }
 
+/* Mobile Install Button in Menu */
+.mobile-install-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--color-gold-dark);
+    font-weight: 700;
+}
+
+.mobile-install-btn svg {
+    flex-shrink: 0;
+}
+
+[data-theme="dark"] .mobile-install-btn {
+    color: var(--color-gold);
+}
+
 .tab-btn {
     background: transparent;
     border: 1px solid transparent;
