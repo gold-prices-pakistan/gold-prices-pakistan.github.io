@@ -1,0 +1,52 @@
+name: Scrape Live Gold Data
+
+on:
+  # schedule:
+  #   - cron: "10 7 * * *"  # 7:10 AM UTC daily
+  #   - cron: "10 13 * * *" # 1:10 PM UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  scrape-live:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Create Data Directory
+        run: mkdir -p data
+
+      - name: Run Live Data Scraper
+        run: |
+          cd scripts
+          python scraper-live.py
+          mv scraper-live-data.json ../data/scraper-live-data.json
+
+      - name: Commit & Push Changes
+        run: |
+          git config user.name "goldpk-bot"
+          git config user.email "thesaadarshad+goldpk@gmail.com"
+          git add -f data/scraper-live-data.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+          git commit -m "Auto Update: Live Gold Data Scrape" || echo "Nothing to commit"
+          git push
+
