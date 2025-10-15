@@ -513,6 +513,14 @@ function renderUI() {
 // Event Handlers
 // ============================================
 
+function updateLanguageToggle() {
+    const langText = document.getElementById('langText');
+    if (langText) {
+        // Show the opposite language (if current is English, show Urdu option)
+        langText.textContent = appState.currentLang === 'en' ? 'اردو' : 'English';
+    }
+}
+
 function setupEventListeners() {
     // Language toggle
     const langToggle = document.getElementById('langToggle');
@@ -520,6 +528,7 @@ function setupEventListeners() {
         langToggle.addEventListener('click', () => {
             appState.toggleLanguage();
             updateLanguage();
+            updateLanguageToggle();
             renderUI(); // Re-render with new language formatting
         });
     }
@@ -560,6 +569,7 @@ async function init() {
     // Set initial theme and language
     updateTheme();
     updateLanguage();
+    updateLanguageToggle();
 
     // Setup event listeners
     setupEventListeners();

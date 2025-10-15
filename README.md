@@ -15,35 +15,56 @@ A beautiful, minimalist web application for tracking gold prices in Pakistan. Bu
 - **Local Storage** - Remembers your preferences
 
 ### 📊 Data Features
-- Current gold price (per tola)
-- Price change indicators (daily)
-- Historical price data (30 days)
-- Percentage change calculations
-- Beautiful data visualization
+- Live gold prices for all karat types (24K, 22K, 21K, 18K, 12K)
+- Multiple weight units (Tola, 10 Gram, 1 Gram, Ounce)
+- Featured display for 24K prices (1 Tola, 10 Gram, 1 Gram)
+- Complete price matrix table for all combinations
+- Historical price data with interactive Chart.js graphs
+- Daily price tracking and trends
 
 ## 🛠️ Tech Stack
 
-- **HTML5** - Semantic markup
+- **HTML5** - Semantic markup with comprehensive SEO meta tags
 - **CSS3** - Modern styling with CSS Variables & Golden Ratio
 - **Vanilla JavaScript** - No framework dependencies
+- **Chart.js** - Interactive price history graphs
 - **PWA** - Progressive Web App capabilities
 - **Nginx** - Production web server
 - **Docker** - Containerized deployment
+
+## 🔍 SEO Features
+
+- ✅ **18 Meta Tags** - Title, description, keywords, geo-tags
+- ✅ **Open Graph** - Beautiful social media previews (Facebook, WhatsApp, LinkedIn)
+- ✅ **Twitter Cards** - Optimized Twitter/X sharing
+- ✅ **Structured Data** - JSON-LD schemas for Google Rich Results
+- ✅ **Sitemap.xml** - Automated site indexing
+- ✅ **Robots.txt** - Search engine directives
+- ✅ **Bilingual SEO** - English & Urdu support
+- ✅ **Pakistan Geo-targeting** - Local search optimization
+
+**Live at:** https://goldpk.github.io/gold-prices-pakistan/
 
 ## 📦 Project Structure
 
 ```
 goldpk/
-├── index.html              # Main HTML file
-├── styles.css              # Golden ratio-based CSS
+├── index.html              # Main HTML file with SEO meta tags
+├── styles.css              # Golden ratio-based CSS with modern fonts
 ├── app.js                  # Core application logic
 ├── manifest.json           # PWA manifest
 ├── sw.js                   # Service Worker for offline support
-├── dummy-response.json     # Gold price data
+├── response-live.json      # Live gold prices (all karats & units)
+├── response-history.json   # Historical price data (24K 1 Tola)
+├── robots.txt              # Search engine directives
+├── sitemap.xml             # Site structure for SEO
+├── icon-192.png            # PWA icon (192x192)
+├── icon-512.png            # PWA icon (512x512)
 ├── nginx.conf              # Nginx configuration
 ├── Dockerfile              # Docker image configuration
-├── docker-compose.yml      # Docker Compose setup
+├── docker-compose.yml      # Docker Compose setup (port 8091)
 ├── .gitignore              # Git ignore rules
+├── DOC/                    # Documentation (gitignored)
 └── README.md               # This file
 ```
 
@@ -77,10 +98,10 @@ docker-compose up -d
 
 # Or build and run manually
 docker build -t goldpk .
-docker run -d -p 8080:80 --name goldpk-web goldpk
+docker run -d -p 8091:80 --name goldpk-web goldpk
 ```
 
-Then visit: `http://localhost:8080`
+Then visit: `http://localhost:8091`
 
 To stop:
 ```bash
@@ -165,22 +186,39 @@ git push
 
 ## 🔄 Updating Gold Prices
 
-Edit `dummy-response.json` with new data:
+### Live Prices (`response-live.json`)
+
+Edit with current prices for all karats and units:
+
+```json
+{
+  "1 Tola": [441800.0, 404980.0, 386575.0, 331350.0, 220900.0],
+  "10 Gram": [378780.0, 347212.0, 331433.0, 284085.0, 189390.0],
+  "1 Gram": [37878.0, 34721.0, 33143.0, 28409.0, 18939.0],
+  "1 Ounce": [1073830.0, 984337.0, 939601.0, 805373.0, 536915.0]
+}
+```
+
+Format: Each array contains prices for [24K, 22K, 21K, 18K, 12K]
+
+### Historical Prices (`response-history.json`)
+
+Add daily 24K 1 Tola prices:
 
 ```json
 {
   "15 Oct 2025": 445000.0,
-  "14 Oct 2025": 441900.0,
-  ...
+  "14 Oct 2025": 441800.0,
+  "13 Oct 2025": 442700.0
 }
 ```
 
-The format is: `"DD MMM YYYY": price_in_pkr`
+Format: `"DD MMM YYYY": price_in_pkr` (24K 1 Tola)
 
 Then commit and push:
 ```bash
-git add dummy-response.json
-git commit -m "Update gold prices"
+git add response-live.json response-history.json
+git commit -m "Update gold prices for $(date +%Y-%m-%d)"
 git push
 ```
 

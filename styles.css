@@ -224,6 +224,20 @@ h1, h2, h3, h4, h5, h6 {
     display: block;
 }
 
+.btn-lang {
+    width: auto;
+    min-width: 4rem;
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+.btn-lang #langText {
+    display: block;
+    line-height: 1;
+}
+
 .moon-icon {
     display: none;
 }

@@ -2,6 +2,9 @@
 # Gold Prices Pakistan - .gitignore
 # ============================================
 
+# Documentation (kept locally only)
+DOC/
+
 # Operating System Files
 .DS_Store
 .DS_Store?
@@ -86,10 +89,14 @@ temp/
 # - response-history.json
 # - icon-192.png
 # - icon-512.png
-# - *.md (documentation)
+# - robots.txt
+# - sitemap.xml
+# - README.md (root documentation)
 # - Dockerfile
 # - docker-compose.yml
 # - nginx.conf
 # - .dockerignore
+# 
+# Note: DOC/ folder is intentionally ignored (local documentation only)
 
 

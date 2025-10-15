@@ -17,6 +17,8 @@ COPY manifest.json .
 COPY sw.js .
 COPY response-live.json .
 COPY response-history.json .
+COPY robots.txt .
+COPY sitemap.xml .
 
 # Copy placeholder icons (will be replaced with actual icons)
 # For now, create empty placeholder files

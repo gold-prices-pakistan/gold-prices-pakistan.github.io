@@ -1,0 +1,24 @@
+# Gold Prices Pakistan - robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /test-local.sh
+Disallow: /create-icons.py
+Disallow: /*.md$
+
+# Sitemaps
+Sitemap: https://goldpk.github.io/gold-prices-pakistan/sitemap.xml
+
+# Crawl-delay
+Crawl-delay: 1
+
+# Specific bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
