@@ -25,7 +25,7 @@ const translations = {
         'ios-install-title': 'Install this app',
         'ios-install-hint': 'Tap Share → Add to Home Screen',
         'scroll-hint': '← Swipe to see all rates →',
-        'as-of': 'As of'
+        'as-of': 'Updated on'
     },
     ur: {
         'app-title': 'سونے کی قیمتیں پاکستان',
@@ -47,7 +47,7 @@ const translations = {
         'ios-install-title': 'یہ ایپ انسٹال کریں',
         'ios-install-hint': 'شیئر → ہوم اسکرین میں شامل کریں',
         'scroll-hint': '→ تمام قیمتیں دیکھنے کے لیے سوائپ کریں ←',
-        'as-of': 'بتاریخ'
+        'as-of': 'اپ ڈیٹ'
     }
 };
 
