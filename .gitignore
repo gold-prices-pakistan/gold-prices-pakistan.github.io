@@ -5,8 +5,9 @@
 # Documentation (kept locally only)
 DOC/
 
-# Testing files (API testing output)
-live-prices.json
+# Do not ignore live gold data
+!live-prices.json
+!live-prices-history.json
 
 # Operating System Files
 .DS_Store
