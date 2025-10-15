@@ -21,7 +21,9 @@ const translations = {
         'karat': 'Karat',
         'previous': 'Previous',
         'next': 'Next',
-        'install-app': 'Install'
+        'install-app': 'Install',
+        'ios-install-title': 'Install this app',
+        'ios-install-hint': 'Tap Share → Add to Home Screen'
     },
     ur: {
         'app-title': 'سونے کی قیمتیں پاکستان',
@@ -39,7 +41,9 @@ const translations = {
         'karat': 'قیراط',
         'previous': 'پچھلا',
         'next': 'اگلا',
-        'install-app': 'انسٹال کریں'
+        'install-app': 'انسٹال کریں',
+        'ios-install-title': 'یہ ایپ انسٹال کریں',
+        'ios-install-hint': 'شیئر → ہوم اسکرین میں شامل کریں'
     }
 };
 
@@ -557,8 +561,32 @@ function setupEventListeners() {
 
 function setupPWAInstall() {
     const installBtn = document.getElementById('installBtn');
+    const iosBanner = document.getElementById('iosBanner');
+    const iosBannerClose = document.getElementById('iosBannerClose');
     
-    // Listen for beforeinstallprompt event
+    // Detect iOS
+    const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
+    const isInStandaloneMode = ('standalone' in window.navigator) && window.navigator.standalone;
+    
+    // Show iOS banner if on iOS, not in standalone mode, and not dismissed
+    if (isIOS && !isInStandaloneMode && iosBanner) {
+        const iosBannerDismissed = localStorage.getItem('goldpk_ios_banner_dismissed');
+        if (!iosBannerDismissed) {
+            iosBanner.style.display = 'block';
+        }
+    }
+    
+    // Handle iOS banner close
+    if (iosBannerClose) {
+        iosBannerClose.addEventListener('click', () => {
+            if (iosBanner) {
+                iosBanner.style.display = 'none';
+            }
+            localStorage.setItem('goldpk_ios_banner_dismissed', 'true');
+        });
+    }
+    
+    // Listen for beforeinstallprompt event (Android/Desktop)
     window.addEventListener('beforeinstallprompt', (e) => {
         // Prevent the default mini-infobar from appearing
         e.preventDefault();
