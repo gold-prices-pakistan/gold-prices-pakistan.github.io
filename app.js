@@ -7,9 +7,28 @@
 const translations = {
     en: {
         'app-title': 'Gold Prices Pakistan',
+        'tab-prices': 'Gold Prices In Pakistan',
+        'tab-zakat': 'My Zakat Calculator',
         'today-price': 'Gold Price in Pakistan Today',
         'matrix-title': 'Rate Chart by Karat & Weight',
         'matrix-subtitle': 'All gold types and weight units at a glance',
+        'zakat-title': 'My Zakat Calculator',
+        'zakat-subtitle': 'Calculate your Zakat on Gold (2.5%)',
+        'nisab-threshold': 'Nisab Threshold',
+        'zakat-rate': 'Zakat Rate',
+        'your-gold': 'Your Gold Holdings',
+        'add-entry': 'Add Another Item',
+        'gold-entry': 'Gold Entry',
+        'amount': 'Amount',
+        'in-unit': 'In',
+        'purity': 'Purity',
+        'zakat-summary': 'Zakat Summary',
+        'total-gold': 'Total Gold (24K equivalent)',
+        'total-value': 'Total Value',
+        'nisab-status': 'Nisab Status',
+        'below-nisab': 'Below Nisab',
+        'above-nisab': 'Zakat Applicable',
+        'zakat-due': 'Zakat Due (2.5%)',
         'per-tola': '/tola',
         'price-history': 'Price History (24K 1 Tola)',
         'all-prices': 'All Gold Prices',
@@ -38,9 +57,28 @@ const translations = {
     },
     ur: {
         'app-title': 'سونے کی قیمتیں پاکستان',
+        'tab-prices': 'پاکستان میں سونے کی قیمتیں',
+        'tab-zakat': 'میری زکوٰۃ کیلکولیٹر',
         'today-price': 'آج پاکستان میں سونے کی قیمت',
         'matrix-title': 'قیراط اور وزن کے لحاظ سے نرخ چارٹ',
         'matrix-subtitle': 'تمام قسمیں اور وزن ایک نظر میں',
+        'zakat-title': 'میری زکوٰۃ کیلکولیٹر',
+        'zakat-subtitle': 'سونے پر زکوٰۃ کا حساب (2.5%)',
+        'nisab-threshold': 'نصاب کی حد',
+        'zakat-rate': 'زکوٰۃ کی شرح',
+        'your-gold': 'آپ کے سونے کی مقدار',
+        'add-entry': 'مزید شامل کریں',
+        'gold-entry': 'سونے کی اندراج',
+        'amount': 'مقدار',
+        'in-unit': 'میں',
+        'purity': 'خالصیت',
+        'zakat-summary': 'زکوٰۃ کا خلاصہ',
+        'total-gold': 'کل سونا (24K کے برابر)',
+        'total-value': 'کل قیمت',
+        'nisab-status': 'نصاب کی حیثیت',
+        'below-nisab': 'نصاب سے کم',
+        'above-nisab': 'زکوٰۃ واجب ہے',
+        'zakat-due': 'واجب زکوٰۃ (2.5%)',
         'per-tola': '/تولہ',
         'price-history': 'قیمتوں کی تاریخ (24K 1 تولہ)',
         'all-prices': 'تمام قیمتیں',
@@ -86,6 +124,9 @@ class AppState {
         this.itemsPerPage = 10;
         this.priceChart = null;
         this.deferredPrompt = null; // Store the install prompt event
+        this.currentTab = 'prices';
+        this.zakatEntries = [];
+        this.zakatCounter = 0;
     }
 
     loadPreference(key) {
@@ -540,6 +581,63 @@ function updateLanguageToggle() {
 }
 
 function setupEventListeners() {
+    // Tab Navigation
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tab = btn.dataset.tab;
+            switchTab(tab);
+        });
+    });
+
+    // Mobile Menu Toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = menuToggle?.querySelector('.menu-icon');
+    const closeIcon = menuToggle?.querySelector('.close-icon');
+    
+    if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener('click', () => {
+            const isActive = mobileMenu.classList.toggle('active');
+            if (menuIcon && closeIcon) {
+                menuIcon.style.display = isActive ? 'none' : 'block';
+                closeIcon.style.display = isActive ? 'block' : 'none';
+            }
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !mobileMenu.contains(e.target)) {
+                mobileMenu.classList.remove('active');
+                if (menuIcon && closeIcon) {
+                    menuIcon.style.display = 'block';
+                    closeIcon.style.display = 'none';
+                }
+            }
+        });
+    }
+    
+    // Mobile Menu Items
+    const mobileMenuItems = document.querySelectorAll('.mobile-menu-item');
+    mobileMenuItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const tab = item.dataset.tab;
+            switchTab(tab);
+            // Close mobile menu
+            mobileMenu?.classList.remove('active');
+            if (menuIcon && closeIcon) {
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+            }
+        });
+    });
+
+    // Zakat Calculator - Add Entry Button
+    const addEntryBtn = document.getElementById('addEntryBtn');
+    if (addEntryBtn) {
+        addEntryBtn.addEventListener('click', addGoldEntry);
+    }
+
     // Language toggle
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
@@ -685,6 +783,189 @@ async function registerServiceWorker() {
 }
 
 // ============================================
+// Tab Navigation
+// ============================================
+
+function switchTab(tab) {
+    appState.currentTab = tab;
+    
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.tab === tab);
+    });
+    
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.toggle('active', content.id === `${tab}-tab`);
+    });
+    
+    // If switching to zakat tab and no entries, add one
+    if (tab === 'zakat' && appState.zakatEntries.length === 0) {
+        addGoldEntry();
+    }
+}
+
+// ============================================
+// Zakat Calculator
+// ============================================
+
+const NISAB_THRESHOLD = 87.48; // grams (7.5 tola)
+const ZAKAT_RATE = 0.025; // 2.5%
+
+// Unit conversions to grams
+const UNIT_TO_GRAMS = {
+    'Tola': 11.664,
+    'Gram': 1,
+    'Ounce': 31.1035
+};
+
+// Karat to pure gold ratio
+const KARAT_PURITY = {
+    '24 Karat': 1.0,
+    '22 Karat': 0.916,
+    '21 Karat': 0.875,
+    '18 Karat': 0.75,
+    '12 Karat': 0.5
+};
+
+function addGoldEntry() {
+    appState.zakatCounter++;
+    const entryId = appState.zakatCounter;
+    
+    const entry = {
+        id: entryId,
+        weight: '',
+        unit: 'Tola',
+        karat: '24 Karat'
+    };
+    
+    appState.zakatEntries.push(entry);
+    renderZakatEntries();
+    calculateZakat();
+}
+
+function removeGoldEntry(entryId) {
+    appState.zakatEntries = appState.zakatEntries.filter(e => e.id !== entryId);
+    renderZakatEntries();
+    calculateZakat();
+}
+
+function updateGoldEntry(entryId, field, value) {
+    const entry = appState.zakatEntries.find(e => e.id === entryId);
+    if (entry) {
+        entry[field] = value;
+        calculateZakat();
+    }
+}
+
+function renderZakatEntries() {
+    const container = document.getElementById('goldEntries');
+    if (!container) return;
+    
+    container.innerHTML = appState.zakatEntries.map(entry => `
+        <div class="gold-entry" data-entry-id="${entry.id}">
+            <div class="field-group">
+                <label class="field-label" data-i18n="amount">${translations[appState.currentLang]['amount']}</label>
+                <input 
+                    type="number" 
+                    class="field-input" 
+                    value="${entry.weight}" 
+                    placeholder="0"
+                    min="0"
+                    step="0.01"
+                    onchange="updateGoldEntry(${entry.id}, 'weight', this.value)"
+                    oninput="updateGoldEntry(${entry.id}, 'weight', this.value)"
+                >
+            </div>
+            <div class="field-group">
+                <label class="field-label" data-i18n="in-unit">${translations[appState.currentLang]['in-unit']}</label>
+                <select class="field-select" onchange="updateGoldEntry(${entry.id}, 'unit', this.value)">
+                    ${Object.keys(UNIT_TO_GRAMS).map(unit => `
+                        <option value="${unit}" ${entry.unit === unit ? 'selected' : ''}>${unit}</option>
+                    `).join('')}
+                </select>
+            </div>
+            <div class="field-group">
+                <label class="field-label" data-i18n="purity">${translations[appState.currentLang]['purity']}</label>
+                <select class="field-select" onchange="updateGoldEntry(${entry.id}, 'karat', this.value)">
+                    ${Object.keys(KARAT_PURITY).map(karat => `
+                        <option value="${karat}" ${entry.karat === karat ? 'selected' : ''}>${karat.replace(' Karat', 'K')}</option>
+                    `).join('')}
+                </select>
+            </div>
+            ${appState.zakatEntries.length > 1 ? `
+                <button class="btn-remove-entry" onclick="removeGoldEntry(${entry.id})" aria-label="Remove entry">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </button>
+            ` : '<div></div>'}
+        </div>
+    `).join('');
+}
+
+function calculateZakat() {
+    if (!appState.liveData) return;
+    
+    let totalGoldGrams = 0; // 24K equivalent
+    let totalValue = 0;
+    
+    // Calculate totals
+    appState.zakatEntries.forEach(entry => {
+        const weight = parseFloat(entry.weight) || 0;
+        if (weight <= 0) return;
+        
+        // Convert to grams
+        const grams = weight * UNIT_TO_GRAMS[entry.unit];
+        
+        // Convert to 24K equivalent
+        const pureGold = grams * KARAT_PURITY[entry.karat];
+        totalGoldGrams += pureGold;
+        
+        // Calculate value (using current 24K 1 Gram price)
+        const pricePerGram = appState.liveData['1 Gram'][0]; // 24K price
+        const entryValue = pureGold * pricePerGram;
+        totalValue += entryValue;
+    });
+    
+    // Check if above Nisab
+    const isAboveNisab = totalGoldGrams >= NISAB_THRESHOLD;
+    const zakatAmount = isAboveNisab ? totalValue * ZAKAT_RATE : 0;
+    
+    // Update UI
+    updateZakatSummary(totalGoldGrams, totalValue, isAboveNisab, zakatAmount);
+}
+
+function updateZakatSummary(totalGoldGrams, totalValue, isAboveNisab, zakatAmount) {
+    // Total Gold
+    const totalGoldEl = document.getElementById('totalGold');
+    if (totalGoldEl) {
+        totalGoldEl.textContent = `${totalGoldGrams.toFixed(2)} g`;
+    }
+    
+    // Total Value
+    const totalValueEl = document.getElementById('totalValue');
+    if (totalValueEl) {
+        totalValueEl.textContent = `PKR ${formatNumber(Math.round(totalValue))}`;
+    }
+    
+    // Nisab Status
+    const nisabStatusEl = document.getElementById('nisabStatus');
+    if (nisabStatusEl) {
+        const statusClass = isAboveNisab ? 'applicable' : 'not-applicable';
+        const statusText = isAboveNisab ? translations[appState.currentLang]['above-nisab'] : translations[appState.currentLang]['below-nisab'];
+        nisabStatusEl.innerHTML = `<span class="status-badge ${statusClass}">${statusText}</span>`;
+    }
+    
+    // Zakat Due
+    const zakatDueEl = document.getElementById('zakatDue');
+    if (zakatDueEl) {
+        zakatDueEl.textContent = `PKR ${formatNumber(Math.round(zakatAmount))}`;
+    }
+}
+
+// ============================================
 // Initialization
 // ============================================
 
@@ -700,6 +981,11 @@ async function init() {
     // Load and render data
     await loadAllData();
     renderUI();
+
+    // Initialize Zakat calculator with first entry if on zakat tab
+    if (appState.currentTab === 'zakat') {
+        addGoldEntry();
+    }
 
     // Register service worker for PWA
     await registerServiceWorker();

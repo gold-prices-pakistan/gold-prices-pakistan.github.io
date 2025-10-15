@@ -217,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) 0;
-    gap: var(--space-md);
+    gap: var(--space-lg);
 }
 
 .logo {
@@ -368,6 +368,558 @@ h1, h2, h3, h4, h5, h6 {
 [data-theme="dark"] .footer-link:hover {
     color: var(--color-gold-light);
     border-bottom-color: var(--color-gold-light);
+}
+
+/* ============================================
+   Tab Navigation
+   ============================================ */
+
+.tab-nav {
+    display: flex;
+    gap: var(--space-xs);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.tab-nav::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+/* Header Tabs */
+.header-tabs {
+    flex: 1;
+    max-width: 600px;
+    border-bottom: none;
+}
+
+/* Mobile Menu Toggle */
+.btn-menu-toggle {
+    display: none;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+
+.btn-menu-toggle:hover {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--color-gold-dark);
+}
+
+[data-theme="dark"] .btn-menu-toggle:hover {
+    border-color: var(--color-gold);
+}
+
+.mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    min-width: 250px;
+    z-index: 1000;
+    margin-top: var(--space-xs);
+}
+
+.mobile-menu.active {
+    display: block;
+}
+
+.mobile-menu-item {
+    display: block;
+    width: 100%;
+    padding: var(--space-md);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    text-align: left;
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.mobile-menu-item:last-child {
+    border-bottom: none;
+}
+
+.mobile-menu-item:hover {
+    background: rgba(212, 175, 55, 0.1);
+    color: var(--color-gold-dark);
+}
+
+[data-theme="dark"] .mobile-menu-item:hover {
+    color: var(--color-gold);
+}
+
+.tab-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+    border-radius: var(--radius-sm);
+}
+
+.tab-btn:hover {
+    color: var(--color-gold-dark);
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.tab-btn.active {
+    color: var(--color-gold-dark);
+    background: rgba(212, 175, 55, 0.1);
+    border-color: var(--color-gold-dark);
+}
+
+[data-theme="dark"] .tab-btn.active {
+    color: var(--color-gold);
+    border-color: var(--color-gold);
+}
+
+[data-theme="dark"] .tab-btn:hover {
+    color: var(--color-gold-light);
+    background: rgba(244, 208, 63, 0.05);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   Zakat Calculator
+   ============================================ */
+
+.zakat-calculator {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.zakat-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.zakat-header .hero-title {
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-xs);
+}
+
+.zakat-subtitle {
+    color: var(--color-text-secondary);
+    font-size: var(--text-sm);
+    margin-top: 0;
+}
+
+/* Zakat Info Card */
+.zakat-info-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-xl);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.03));
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.zakat-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.zakat-info-label {
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.zakat-info-value {
+    font-size: var(--text-md);
+    color: var(--color-gold-dark);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] .zakat-info-value {
+    color: var(--color-gold);
+}
+
+/* Gold Entries Section */
+.zakat-entries {
+    margin-bottom: var(--space-2xl);
+}
+
+.zakat-entries .section-title {
+    font-size: var(--text-md);
+    margin-bottom: var(--space-md);
+}
+
+.entries-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.entries-list {
+    padding: var(--space-md);
+}
+
+.gold-entry {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1.5fr auto;
+    gap: var(--space-md);
+    align-items: end;
+    padding: var(--space-md);
+    border-bottom: 1px solid var(--color-border);
+    transition: background 0.2s ease;
+}
+
+.gold-entry:last-child {
+    border-bottom: none;
+}
+
+.gold-entry:hover {
+    background: rgba(212, 175, 55, 0.03);
+}
+
+.btn-remove-entry {
+    background: transparent;
+    border: 1px solid var(--color-border);
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-secondary);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.btn-remove-entry:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.field-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.field-label {
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.field-input,
+.field-select {
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: var(--text-base);
+    font-family: 'Inter', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.field-input:focus,
+.field-select:focus {
+    outline: none;
+    border-color: var(--color-gold-dark);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+}
+
+[data-theme="dark"] .field-input:focus,
+[data-theme="dark"] .field-select:focus {
+    border-color: var(--color-gold);
+    box-shadow: 0 0 0 3px rgba(244, 208, 63, 0.1);
+}
+
+.field-input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.field-input[type="number"]::-webkit-outer-spin-button,
+.field-input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Add Entry Button */
+.btn-add-entry {
+    width: 100%;
+    padding: var(--space-md);
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-gold-dark);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    transition: all 0.2s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.btn-add-entry:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+[data-theme="dark"] .btn-add-entry {
+    color: var(--color-gold);
+}
+
+[data-theme="dark"] .btn-add-entry:hover {
+    background: rgba(244, 208, 63, 0.05);
+}
+
+/* Zakat Summary */
+.zakat-summary {
+    margin-top: var(--space-2xl);
+    margin-bottom: var(--space-2xl);
+}
+
+.zakat-summary .section-title {
+    font-size: var(--text-md);
+    margin-bottom: var(--space-md);
+}
+
+.summary-card {
+    background: var(--color-surface);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-row.highlight {
+    background: rgba(212, 175, 55, 0.05);
+    margin: 0 calc(-1 * var(--space-md));
+    padding: var(--space-md);
+    border-radius: var(--radius-sm);
+}
+
+.summary-row.zakat-due {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-xl);
+    border-top: 2px solid var(--color-gold-dark);
+}
+
+[data-theme="dark"] .summary-row.zakat-due {
+    border-top-color: var(--color-gold);
+}
+
+.summary-label {
+    font-size: var(--text-base);
+    color: var(--color-text-secondary);
+    font-weight: 500;
+}
+
+.summary-value {
+    font-size: var(--text-md);
+    color: var(--color-text);
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+}
+
+.summary-value-large {
+    font-size: var(--text-lg);
+    color: var(--color-gold-dark);
+    font-weight: 800;
+    font-family: 'Poppins', sans-serif;
+}
+
+[data-theme="dark"] .summary-value-large {
+    color: var(--color-gold);
+}
+
+/* Status Badge */
+.status-badge {
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-sm);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.status-badge.applicable {
+    background: rgba(34, 197, 94, 0.1);
+    color: #22c55e;
+}
+
+.status-badge.not-applicable {
+    background: rgba(148, 163, 184, 0.1);
+    color: #94a3b8;
+}
+
+/* Mobile Responsive - Zakat Calculator */
+@media (max-width: 768px) {
+    .header-content {
+        position: relative;
+    }
+    
+    .logo {
+        flex: 1;
+    }
+    
+    .controls {
+        display: flex;
+        gap: var(--space-xs);
+        flex-shrink: 0;
+        position: relative;
+    }
+    
+    /* Hide desktop tabs, show hamburger menu */
+    .header-tabs {
+        display: none;
+    }
+    
+    .btn-menu-toggle {
+        display: flex;
+    }
+    
+    .zakat-info-card {
+        grid-template-columns: 1fr;
+        padding: var(--space-md);
+    }
+    
+    .gold-entry {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+        padding: var(--space-md);
+    }
+    
+    .btn-remove-entry {
+        width: 100%;
+        height: 32px;
+    }
+    
+    .summary-card {
+        padding: var(--space-md);
+    }
+    
+    .summary-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+    
+    .summary-row.highlight {
+        margin: 0 calc(-1 * var(--space-sm));
+        padding: var(--space-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: var(--text-sm);
+    }
+    
+    .logo-icon {
+        font-size: 1.2rem;
+    }
+    
+    .btn-control {
+        padding: var(--space-xs);
+        min-width: 36px;
+        min-height: 36px;
+    }
+    
+    .btn-lang {
+        font-size: 0.7rem;
+    }
+    
+    .btn-menu-toggle {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .mobile-menu {
+        right: 0;
+        min-width: 220px;
+    }
+    
+    .zakat-header {
+        margin-bottom: var(--space-xl);
+    }
+    
+    .entries-list {
+        padding: var(--space-sm);
+    }
+    
+    .gold-entry {
+        padding: var(--space-sm);
+    }
+    
+    .field-label {
+        font-size: 0.65rem;
+    }
+    
+    .field-input,
+    .field-select {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--text-sm);
+    }
+    
+    .summary-value-large {
+        font-size: var(--text-md);
+    }
 }
 
 /* ============================================

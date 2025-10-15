@@ -90,15 +90,39 @@
                 </div>
             </div>
             
-            <div class="header-content">
-                <h1 class="logo">
-                    <a href="https://goldpk.github.io/gold-prices-pakistan/" class="logo-link">
-                        <span class="logo-icon">💰</span>
-                        <span data-i18n="app-title">Gold Prices Pakistan</span>
-                    </a>
-                </h1>
-                
-                <div class="controls">
+                <div class="header-content">
+                    <h1 class="logo">
+                        <a href="https://goldpk.github.io/gold-prices-pakistan/" class="logo-link">
+                            <span class="logo-icon">💰</span>
+                            <span data-i18n="app-title">Gold Prices Pakistan</span>
+                        </a>
+                    </h1>
+                    
+                    <!-- Tab Navigation in Header -->
+                    <nav class="tab-nav header-tabs">
+                        <button class="tab-btn active" data-tab="prices" data-i18n="tab-prices">Gold Prices In Pakistan</button>
+                        <button class="tab-btn" data-tab="zakat" data-i18n="tab-zakat">My Zakat Calculator</button>
+                    </nav>
+                    
+                    <div class="controls">
+                    <!-- Mobile Menu Toggle -->
+                    <button class="btn-menu-toggle" id="menuToggle" aria-label="Toggle menu">
+                        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                    
+                    <!-- Mobile Menu Dropdown -->
+                    <div class="mobile-menu" id="mobileMenu">
+                        <button class="mobile-menu-item" data-tab="prices" data-i18n="tab-prices">Gold Prices In Pakistan</button>
+                        <button class="mobile-menu-item" data-tab="zakat" data-i18n="tab-zakat">My Zakat Calculator</button>
+                    </div>
                     <button class="btn-install" id="installBtn" style="display: none;" aria-label="Install App">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -136,6 +160,8 @@
     <!-- Main Content -->
     <main class="main">
         <div class="container">
+            <!-- Prices Tab Content -->
+            <div class="tab-content active" id="prices-tab">
             <!-- Current Price Hero -->
             <section class="hero">
                 <div class="hero-header">
@@ -231,6 +257,83 @@
                     </div>
                 </div>
             </section>
+            </div>
+            <!-- End Prices Tab -->
+
+            <!-- Zakat Calculator Tab Content -->
+            <div class="tab-content" id="zakat-tab">
+                <section class="zakat-calculator">
+                    <div class="zakat-header">
+                        <h1 class="hero-title" data-i18n="zakat-title">My Zakat Calculator</h1>
+                        <p class="zakat-subtitle" data-i18n="zakat-subtitle">Calculate your Zakat on Gold (2.5%)</p>
+                    </div>
+
+                    <!-- Gold Entries -->
+                    <div class="zakat-entries">
+                        <h2 class="section-title" data-i18n="your-gold">Your Gold Holdings</h2>
+                        <div class="entries-container">
+                            <div class="entries-list" id="goldEntries">
+                                <!-- Dynamic entries will be added here -->
+                            </div>
+                            <button class="btn-add-entry" id="addEntryBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                </svg>
+                                <span data-i18n="add-entry">Add Another Item</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Calculation Summary -->
+                    <div class="zakat-summary">
+                        <h2 class="section-title" data-i18n="zakat-summary">Zakat Summary</h2>
+                        <div class="summary-card">
+                            <div class="summary-row">
+                                <span class="summary-label" data-i18n="total-gold">Total Gold (24K equivalent)</span>
+                                <span class="summary-value" id="totalGold">0 g</span>
+                            </div>
+                            <div class="summary-row">
+                                <span class="summary-label" data-i18n="total-value">Total Value</span>
+                                <span class="summary-value" id="totalValue">PKR 0</span>
+                            </div>
+                            <div class="summary-row highlight">
+                                <span class="summary-label" data-i18n="nisab-status">Nisab Status</span>
+                                <span class="summary-value" id="nisabStatus">
+                                    <span class="status-badge not-applicable" data-i18n="below-nisab">Below Nisab</span>
+                                </span>
+                            </div>
+                            <div class="summary-row zakat-due">
+                                <span class="summary-label" data-i18n="zakat-due">Zakat Due (2.5%)</span>
+                                <span class="summary-value-large" id="zakatDue">PKR 0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nisab Info Card -->
+                    <div class="zakat-info-card">
+                        <div class="zakat-info-item">
+                            <span class="zakat-info-label" data-i18n="nisab-threshold">Nisab Threshold</span>
+                            <span class="zakat-info-value">87.48 Gram (7.5 Tola)</span>
+                        </div>
+                        <div class="zakat-info-item">
+                            <span class="zakat-info-label" data-i18n="zakat-rate">Zakat Rate</span>
+                            <span class="zakat-info-value">2.5%</span>
+                        </div>
+                    </div>
+
+                    <!-- Advertisement Space -->
+                    <section class="ad-section">
+                        <div class="ad-container">
+                            <!-- Google AdSense Code Goes Here -->
+                            <div class="ad-placeholder" id="ad-slot-zakat">
+                                <!-- Replace this placeholder with your AdSense code -->
+                            </div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <!-- End Zakat Tab -->
         </div>
     </main>
 
