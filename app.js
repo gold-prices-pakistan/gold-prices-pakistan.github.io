@@ -408,10 +408,10 @@ function renderAllPricesTable() {
 
     // Define unit labels
     const unitLabels = {
-        '1 Tola': 'per tola Gold Price',
-        '10 Gram': 'Gold per 10 Gram',
-        '1 Gram': 'Gold per Gram',
-        '1 Ounce': 'Gold per Ounce'
+        '1 Tola': '1 Tola',
+        '10 Gram': '10 Gram',
+        '1 Gram': '1 Gram',
+        '1 Ounce': '1 Ounce'
     };
 
     // Create rows for each unit
@@ -433,7 +433,7 @@ function renderAllPricesTable() {
         unitPrices.forEach(price => {
             const priceCell = document.createElement('td');
             priceCell.className = 'matrix-price';
-            priceCell.textContent = `Rs. ${formatNumber(price)}`;
+            priceCell.textContent = `${formatNumber(price)}`;
             row.appendChild(priceCell);
         });
 
@@ -1052,6 +1052,31 @@ function switchTab(tab) {
     if (tab === 'zakat' && appState.zakatEntries.length === 0) {
         addGoldEntry();
     }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchToCity(cityCode) {
+    // Update city selection
+    appState.setCity(cityCode || null);
+    
+    // Update dropdown
+    const citySelector = document.getElementById('citySelector');
+    if (citySelector) {
+        citySelector.value = cityCode || '';
+    }
+    
+    // Re-render UI with new city data
+    renderUI();
+    
+    // Switch to prices tab if not already there
+    if (appState.currentTab !== 'prices') {
+        switchTab('prices');
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // ============================================
