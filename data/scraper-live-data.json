@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-10-24T08:48:52.558465",
+  "scraped_at": "2025-10-24T13:46:30.207359",
   "current_date": "Date not found",
   "current_rates": [
     {
@@ -51,42 +51,6 @@
   "historical_data": {
     "total_records": 30,
     "records": [
-      {
-        "date": "18Oct 4:21pm",
-        "price": 460300
-      },
-      {
-        "date": "20Oct 12:25pm",
-        "price": 462300
-      },
-      {
-        "date": "20Oct 12:30pm",
-        "price": 462300
-      },
-      {
-        "date": "20Oct 12:30pm",
-        "price": 462300
-      },
-      {
-        "date": "20Oct 1:13pm",
-        "price": 462700
-      },
-      {
-        "date": "20Oct 7:25pm",
-        "price": 467000
-      },
-      {
-        "date": "20Oct 7:26pm",
-        "price": 467000
-      },
-      {
-        "date": "20Oct 8:00pm",
-        "price": 467700
-      },
-      {
-        "date": "20Oct 8:00pm",
-        "price": 467700
-      },
       {
         "date": "21Oct 12:47pm",
         "price": 470500
@@ -169,6 +133,42 @@
       },
       {
         "date": "24Oct 12:51pm",
+        "price": 444000
+      },
+      {
+        "date": "24Oct 2:07pm",
+        "price": 441000
+      },
+      {
+        "date": "24Oct 5:27pm",
+        "price": 440200
+      },
+      {
+        "date": "24Oct 5:27pm",
+        "price": 440200
+      },
+      {
+        "date": "24Oct 5:35pm",
+        "price": 440200
+      },
+      {
+        "date": "24Oct 5:35pm",
+        "price": 442000
+      },
+      {
+        "date": "24Oct 5:51pm",
+        "price": 442000
+      },
+      {
+        "date": "24Oct 5:51pm",
+        "price": 441700
+      },
+      {
+        "date": "24Oct 5:51pm",
+        "price": 441700
+      },
+      {
+        "date": "24Oct 6:41pm",
         "price": 444000
       }
     ]
