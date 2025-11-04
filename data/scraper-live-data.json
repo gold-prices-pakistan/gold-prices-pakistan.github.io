@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2025-11-03T13:48:23.276306",
+  "scraped_at": "2025-11-04T04:40:48.048139",
   "current_date": "Date not found",
   "current_rates": [
     {
@@ -51,22 +51,6 @@
   "historical_data": {
     "total_records": 30,
     "records": [
-      {
-        "date": "31Oct 6:37pm",
-        "price": 426000
-      },
-      {
-        "date": "31Oct 6:37pm",
-        "price": 426000
-      },
-      {
-        "date": "31Oct 6:47pm",
-        "price": 425700
-      },
-      {
-        "date": "31Oct 7:10pm",
-        "price": 425700
-      },
       {
         "date": "31Oct 7:30pm",
         "price": 425700
@@ -169,6 +153,22 @@
       },
       {
         "date": "03Nov 5:26pm",
+        "price": 425800
+      },
+      {
+        "date": "03Nov 7:05pm",
+        "price": 425300
+      },
+      {
+        "date": "03Nov 7:09pm",
+        "price": 425300
+      },
+      {
+        "date": "03Nov 8:04pm",
+        "price": 425800
+      },
+      {
+        "date": "03Nov 8:04pm",
         "price": 425800
       }
     ]
