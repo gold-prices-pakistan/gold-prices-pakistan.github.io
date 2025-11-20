@@ -1,176 +1,34 @@
 {
-  "scraped_at": "2025-11-20T08:29:25.754068",
+  "scraped_at": "2025-11-20T13:23:37.153572",
   "current_date": "Date not found",
   "current_rates": [
     {
-      "price": "438800.00",
+      "price": "439000.00",
       "karat": "24 Karat",
       "weight": "1 Tola"
     },
     {
-      "price": "376210.00",
+      "price": "376380.00",
       "karat": "24 Karat",
       "weight": "10 Gram"
     },
     {
-      "price": "37621.00",
+      "price": "37638.00",
       "karat": "24 Karat",
       "weight": "1 Gram"
     }
   ],
   "price_matrix": {
-    "1 Tola": [
-      438800.0,
-      402230.0,
-      383950.0,
-      329100.0,
-      219400.0
-    ],
-    "10 Gram": [
-      376210.0,
-      344857.0,
-      329184.0,
-      282158.0,
-      188105.0
-    ],
-    "1 Gram": [
-      37621.0,
-      34486.0,
-      32918.0,
-      28216.0,
-      18811.0
-    ],
-    "1 Ounce": [
-      1170150.0,
-      1072630.0,
-      1023881.0,
-      877613.0,
-      585075.0
+    "": [
+      0.0,
+      0.0,
+      439300.0,
+      439400.0,
+      0.0
     ]
   },
   "historical_data": {
-    "total_records": 30,
-    "records": [
-      {
-        "date": "12Nov 3:24pm",
-        "price": 435700
-      },
-      {
-        "date": "12Nov 4:17pm",
-        "price": 435200
-      },
-      {
-        "date": "12Nov 4:18pm",
-        "price": 435200
-      },
-      {
-        "date": "12Nov 5:29pm",
-        "price": 435800
-      },
-      {
-        "date": "12Nov 5:36pm",
-        "price": 435800
-      },
-      {
-        "date": "12Nov 5:36pm",
-        "price": 435800
-      },
-      {
-        "date": "13Nov 1:18pm",
-        "price": 448800
-      },
-      {
-        "date": "13Nov 1:18pm",
-        "price": 448800
-      },
-      {
-        "date": "13Nov 4:07pm",
-        "price": 449800
-      },
-      {
-        "date": "13Nov 5:24pm",
-        "price": 449400
-      },
-      {
-        "date": "13Nov 6:59pm",
-        "price": 448700
-      },
-      {
-        "date": "14Nov 2:20pm",
-        "price": 443800
-      },
-      {
-        "date": "14Nov 4:13pm",
-        "price": 442000
-      },
-      {
-        "date": "14Nov 5:42pm",
-        "price": 438500
-      },
-      {
-        "date": "14Nov 5:57pm",
-        "price": 443800
-      },
-      {
-        "date": "15Nov 1:09pm",
-        "price": 435500
-      },
-      {
-        "date": "15Nov 3:46pm",
-        "price": 435200
-      },
-      {
-        "date": "15Nov 5:16pm",
-        "price": 436200
-      },
-      {
-        "date": "15Nov 6:53pm",
-        "price": 437800
-      },
-      {
-        "date": "15Nov 7:21pm",
-        "price": 436200
-      },
-      {
-        "date": "15Nov 7:21pm",
-        "price": 437800
-      },
-      {
-        "date": "15Nov 8:00pm",
-        "price": 438000
-      },
-      {
-        "date": "17Nov 1:21pm",
-        "price": 437000
-      },
-      {
-        "date": "17Nov 5:24pm",
-        "price": 437000
-      },
-      {
-        "date": "17Nov 6:11pm",
-        "price": 437000
-      },
-      {
-        "date": "17Nov 6:46pm",
-        "price": 437000
-      },
-      {
-        "date": "17Nov 7:25pm",
-        "price": 437000
-      },
-      {
-        "date": "17Nov 7:31pm",
-        "price": 437000
-      },
-      {
-        "date": "18Nov 4:14pm",
-        "price": 435000
-      },
-      {
-        "date": "19Nov 3:13pm",
-        "price": 438800
-      }
-    ]
+    "total_records": 0,
+    "records": []
   }
 }
