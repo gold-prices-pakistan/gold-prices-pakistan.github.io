@@ -1,304 +1,7 @@
 {
-  "scraped_at": "2025-12-19T04:46:22.923659",
-  "total_cities": 3,
+  "scraped_at": "2025-12-19T08:40:21.462150",
+  "total_cities": 2,
   "cities": [
-    {
-      "city_code": "KHI",
-      "city_name": "Karachi",
-      "url": "https://gold.pk/gold-rates-karachi-khi.php",
-      "rates": [
-        {
-          "weight": "1 Tola",
-          "price": 458900.0,
-          "karat": "24 Karat"
-        },
-        {
-          "weight": "10 Gram",
-          "price": 393439.5,
-          "karat": "24 Karat"
-        },
-        {
-          "weight": "1 Gram",
-          "price": 39343.95,
-          "karat": "24 Karat"
-        }
-      ],
-      "daily_price_history": {
-        "total_days": 30,
-        "prices": [
-          {
-            "date": "18 Dec 2025",
-            "10_gram": 393350.0,
-            "1_tola": 458800.0,
-            "24k_per_gram": 39335.0,
-            "22k_per_gram": 36057.0,
-            "21k_per_gram": 34418.0,
-            "18k_per_gram": 29501.0
-          },
-          {
-            "date": "17 Dec 2025",
-            "10_gram": 392670.0,
-            "1_tola": 458000.0,
-            "24k_per_gram": 39267.0,
-            "22k_per_gram": 35994.0,
-            "21k_per_gram": 34359.0,
-            "18k_per_gram": 29450.0
-          },
-          {
-            "date": "16 Dec 2025",
-            "10_gram": 390950.0,
-            "1_tola": 456000.0,
-            "24k_per_gram": 39095.0,
-            "22k_per_gram": 35837.0,
-            "21k_per_gram": 34208.0,
-            "18k_per_gram": 29321.0
-          },
-          {
-            "date": "15 Dec 2025",
-            "10_gram": 391550.0,
-            "1_tola": 456700.0,
-            "24k_per_gram": 39155.0,
-            "22k_per_gram": 35892.0,
-            "21k_per_gram": 34261.0,
-            "18k_per_gram": 29366.0
-          },
-          {
-            "date": "14 Dec 2025",
-            "10_gram": 390800.0,
-            "1_tola": 455800.0,
-            "24k_per_gram": 39080.0,
-            "22k_per_gram": 35823.0,
-            "21k_per_gram": 34195.0,
-            "18k_per_gram": 29310.0
-          },
-          {
-            "date": "13 Dec 2025",
-            "10_gram": 390780.0,
-            "1_tola": 455800.0,
-            "24k_per_gram": 39078.0,
-            "22k_per_gram": 35821.0,
-            "21k_per_gram": 34193.0,
-            "18k_per_gram": 29309.0
-          },
-          {
-            "date": "12 Dec 2025",
-            "10_gram": 393530.0,
-            "1_tola": 459000.0,
-            "24k_per_gram": 39353.0,
-            "22k_per_gram": 36073.0,
-            "21k_per_gram": 34434.0,
-            "18k_per_gram": 29515.0
-          },
-          {
-            "date": "11 Dec 2025",
-            "10_gram": 386070.0,
-            "1_tola": 450300.0,
-            "24k_per_gram": 38607.0,
-            "22k_per_gram": 35389.0,
-            "21k_per_gram": 33781.0,
-            "18k_per_gram": 28955.0
-          },
-          {
-            "date": "10 Dec 2025",
-            "10_gram": 384180.0,
-            "1_tola": 448100.0,
-            "24k_per_gram": 38418.0,
-            "22k_per_gram": 35216.0,
-            "21k_per_gram": 33616.0,
-            "18k_per_gram": 28814.0
-          },
-          {
-            "date": "09 Dec 2025",
-            "10_gram": 383670.0,
-            "1_tola": 447500.0,
-            "24k_per_gram": 38367.0,
-            "22k_per_gram": 35169.0,
-            "21k_per_gram": 33571.0,
-            "18k_per_gram": 28775.0
-          },
-          {
-            "date": "08 Dec 2025",
-            "10_gram": 385380.0,
-            "1_tola": 449500.0,
-            "24k_per_gram": 38538.0,
-            "22k_per_gram": 35326.0,
-            "21k_per_gram": 33721.0,
-            "18k_per_gram": 28904.0
-          },
-          {
-            "date": "07 Dec 2025",
-            "10_gram": 385400.0,
-            "1_tola": 449500.0,
-            "24k_per_gram": 38540.0,
-            "22k_per_gram": 35328.0,
-            "21k_per_gram": 33723.0,
-            "18k_per_gram": 28905.0
-          },
-          {
-            "date": "06 Dec 2025",
-            "10_gram": 385380.0,
-            "1_tola": 449500.0,
-            "24k_per_gram": 38538.0,
-            "22k_per_gram": 35326.0,
-            "21k_per_gram": 33721.0,
-            "18k_per_gram": 28904.0
-          },
-          {
-            "date": "05 Dec 2025",
-            "10_gram": 386410.0,
-            "1_tola": 450700.0,
-            "24k_per_gram": 38641.0,
-            "22k_per_gram": 35421.0,
-            "21k_per_gram": 33811.0,
-            "18k_per_gram": 28981.0
-          },
-          {
-            "date": "04 Dec 2025",
-            "10_gram": 385210.0,
-            "1_tola": 449300.0,
-            "24k_per_gram": 38521.0,
-            "22k_per_gram": 35311.0,
-            "21k_per_gram": 33706.0,
-            "18k_per_gram": 28891.0
-          },
-          {
-            "date": "03 Dec 2025",
-            "10_gram": 386240.0,
-            "1_tola": 450500.0,
-            "24k_per_gram": 38624.0,
-            "22k_per_gram": 35405.0,
-            "21k_per_gram": 33796.0,
-            "18k_per_gram": 28968.0
-          },
-          {
-            "date": "02 Dec 2025",
-            "10_gram": 386670.0,
-            "1_tola": 451000.0,
-            "24k_per_gram": 38667.0,
-            "22k_per_gram": 35444.0,
-            "21k_per_gram": 33834.0,
-            "18k_per_gram": 29000.0
-          },
-          {
-            "date": "01 Dec 2025",
-            "10_gram": 387520.0,
-            "1_tola": 452000.0,
-            "24k_per_gram": 38752.0,
-            "22k_per_gram": 35522.0,
-            "21k_per_gram": 33908.0,
-            "18k_per_gram": 29064.0
-          },
-          {
-            "date": "30 Nov 2025",
-            "10_gram": 385000.0,
-            "1_tola": 449000.0,
-            "24k_per_gram": 38500.0,
-            "22k_per_gram": 35291.0,
-            "21k_per_gram": 33688.0,
-            "18k_per_gram": 28875.0
-          },
-          {
-            "date": "29 Nov 2025",
-            "10_gram": 384950.0,
-            "1_tola": 449000.0,
-            "24k_per_gram": 38495.0,
-            "22k_per_gram": 35287.0,
-            "21k_per_gram": 33683.0,
-            "18k_per_gram": 28871.0
-          },
-          {
-            "date": "28 Nov 2025",
-            "10_gram": 380240.0,
-            "1_tola": 443500.0,
-            "24k_per_gram": 38024.0,
-            "22k_per_gram": 34855.0,
-            "21k_per_gram": 33271.0,
-            "18k_per_gram": 28518.0
-          },
-          {
-            "date": "27 Nov 2025",
-            "10_gram": 379810.0,
-            "1_tola": 443000.0,
-            "24k_per_gram": 37981.0,
-            "22k_per_gram": 34816.0,
-            "21k_per_gram": 33233.0,
-            "18k_per_gram": 28486.0
-          },
-          {
-            "date": "26 Nov 2025",
-            "10_gram": 380660.0,
-            "1_tola": 444000.0,
-            "24k_per_gram": 38066.0,
-            "22k_per_gram": 34894.0,
-            "21k_per_gram": 33308.0,
-            "18k_per_gram": 28550.0
-          },
-          {
-            "date": "25 Nov 2025",
-            "10_gram": 378520.0,
-            "1_tola": 441500.0,
-            "24k_per_gram": 37852.0,
-            "22k_per_gram": 34697.0,
-            "21k_per_gram": 33121.0,
-            "18k_per_gram": 28389.0
-          },
-          {
-            "date": "24 Nov 2025",
-            "10_gram": 375260.0,
-            "1_tola": 437700.0,
-            "24k_per_gram": 37526.0,
-            "22k_per_gram": 34399.0,
-            "21k_per_gram": 32835.0,
-            "18k_per_gram": 28145.0
-          },
-          {
-            "date": "23 Nov 2025",
-            "10_gram": 375200.0,
-            "1_tola": 437600.0,
-            "24k_per_gram": 37520.0,
-            "22k_per_gram": 34393.0,
-            "21k_per_gram": 32830.0,
-            "18k_per_gram": 28140.0
-          },
-          {
-            "date": "22 Nov 2025",
-            "10_gram": 375180.0,
-            "1_tola": 437600.0,
-            "24k_per_gram": 37518.0,
-            "22k_per_gram": 34391.0,
-            "21k_per_gram": 32828.0,
-            "18k_per_gram": 28139.0
-          },
-          {
-            "date": "21 Nov 2025",
-            "10_gram": 374660.0,
-            "1_tola": 437000.0,
-            "24k_per_gram": 37466.0,
-            "22k_per_gram": 34344.0,
-            "21k_per_gram": 32783.0,
-            "18k_per_gram": 28100.0
-          },
-          {
-            "date": "20 Nov 2025",
-            "10_gram": 375780.0,
-            "1_tola": 438300.0,
-            "24k_per_gram": 37578.0,
-            "22k_per_gram": 34446.0,
-            "21k_per_gram": 32881.0,
-            "18k_per_gram": 28184.0
-          },
-          {
-            "date": "19 Nov 2025",
-            "10_gram": 376210.0,
-            "1_tola": 438800.0,
-            "24k_per_gram": 37621.0,
-            "22k_per_gram": 34486.0,
-            "21k_per_gram": 32918.0,
-            "18k_per_gram": 28216.0
-          }
-        ]
-      }
-    },
     {
       "city_code": "LHR",
       "city_name": "Lahore",
@@ -306,23 +9,32 @@
       "rates": [
         {
           "weight": "1 Tola",
-          "price": 458950.0,
+          "price": 459040.0,
           "karat": "24 Karat"
         },
         {
           "weight": "10 Gram",
-          "price": 393482.4,
+          "price": 393559.6,
           "karat": "24 Karat"
         },
         {
           "weight": "1 Gram",
-          "price": 39348.24,
+          "price": 39355.96,
           "karat": "24 Karat"
         }
       ],
       "daily_price_history": {
         "total_days": 30,
         "prices": [
+          {
+            "date": "19 Dec 2025",
+            "10_gram": 393500.0,
+            "1_tola": 458940.0,
+            "24k_per_gram": 39350.0,
+            "22k_per_gram": 36071.0,
+            "21k_per_gram": 34431.0,
+            "18k_per_gram": 29513.0
+          },
           {
             "date": "18 Dec 2025",
             "10_gram": 393400.0,
@@ -583,15 +295,6 @@
             "22k_per_gram": 34492.0,
             "21k_per_gram": 32925.0,
             "18k_per_gram": 28221.0
-          },
-          {
-            "date": "19 Nov 2025",
-            "10_gram": 376260.0,
-            "1_tola": 438850.0,
-            "24k_per_gram": 37671.0,
-            "22k_per_gram": 34531.0,
-            "21k_per_gram": 32962.0,
-            "18k_per_gram": 28253.0
           }
         ]
       }
@@ -603,23 +306,32 @@
       "rates": [
         {
           "weight": "1 Tola",
-          "price": 459000.0,
+          "price": 459180.0,
           "karat": "24 Karat"
         },
         {
           "weight": "10 Gram",
-          "price": 393525.3,
+          "price": 393679.6,
           "karat": "24 Karat"
         },
         {
           "weight": "1 Gram",
-          "price": 39352.53,
+          "price": 39367.96,
           "karat": "24 Karat"
         }
       ],
       "daily_price_history": {
         "total_days": 30,
         "prices": [
+          {
+            "date": "19 Dec 2025",
+            "10_gram": 393600.0,
+            "1_tola": 459080.0,
+            "24k_per_gram": 39360.0,
+            "22k_per_gram": 36080.0,
+            "21k_per_gram": 34440.0,
+            "18k_per_gram": 29520.0
+          },
           {
             "date": "18 Dec 2025",
             "10_gram": 393450.0,
@@ -880,15 +592,6 @@
             "22k_per_gram": 34538.0,
             "21k_per_gram": 32968.0,
             "18k_per_gram": 28259.0
-          },
-          {
-            "date": "19 Nov 2025",
-            "10_gram": 376310.0,
-            "1_tola": 438900.0,
-            "24k_per_gram": 37721.0,
-            "22k_per_gram": 34577.0,
-            "21k_per_gram": 33006.0,
-            "18k_per_gram": 28291.0
           }
         ]
       }
