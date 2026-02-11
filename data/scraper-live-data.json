@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-02-11T05:22:44.042912",
+  "scraped_at": "2026-02-11T08:51:37.968655",
   "current_date": "Date not found",
   "current_rates": [
     {
@@ -51,10 +51,6 @@
   "historical_data": {
     "total_records": 30,
     "records": [
-      {
-        "date": "04Feb 12:35pm",
-        "price": 531000
-      },
       {
         "date": "04Feb 3:21pm",
         "price": 530000
@@ -169,6 +165,10 @@
       },
       {
         "date": "10Feb 5:55pm",
+        "price": 521500
+      },
+      {
+        "date": "11Feb 1:13pm",
         "price": 521500
       }
     ]
