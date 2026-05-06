@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-05T10:03:41.170410",
+  "scraped_at": "2026-05-06T06:22:56.703943",
   "current_date": "Date not found",
   "current_rates": [
     {
@@ -51,26 +51,6 @@
   "historical_data": {
     "total_records": 30,
     "records": [
-      {
-        "date": "29Apr 1:48pm",
-        "price": 478000
-      },
-      {
-        "date": "29Apr 4:48pm",
-        "price": 476500
-      },
-      {
-        "date": "29Apr 4:49pm",
-        "price": 476500
-      },
-      {
-        "date": "29Apr 4:49pm",
-        "price": 476500
-      },
-      {
-        "date": "30Apr 1:29pm",
-        "price": 478000
-      },
       {
         "date": "30Apr 2:53pm",
         "price": 478000
@@ -169,6 +149,26 @@
       },
       {
         "date": "05May 1:25pm",
+        "price": 477500
+      },
+      {
+        "date": "05May 3:29pm",
+        "price": 477000
+      },
+      {
+        "date": "05May 4:04pm",
+        "price": 476000
+      },
+      {
+        "date": "05May 4:33pm",
+        "price": 476000
+      },
+      {
+        "date": "05May 4:33pm",
+        "price": 476000
+      },
+      {
+        "date": "05May 6:50pm",
         "price": 477500
       }
     ]
