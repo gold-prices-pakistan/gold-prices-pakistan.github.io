@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-05-11T07:52:27.152147",
+  "scraped_at": "2026-05-11T11:32:41.595049",
   "total_cities": 3,
   "cities": [
     {
@@ -26,6 +26,15 @@
       "daily_price_history": {
         "total_days": 30,
         "prices": [
+          {
+            "date": "11 May 2026",
+            "10_gram": 415400.0,
+            "1_tola": 484500.0,
+            "24k_per_gram": 41540.0,
+            "22k_per_gram": 38078.0,
+            "21k_per_gram": 36348.0,
+            "18k_per_gram": 31155.0
+          },
           {
             "date": "10 May 2026",
             "10_gram": 415400.0,
@@ -286,15 +295,6 @@
             "22k_per_gram": 40122.0,
             "21k_per_gram": 38299.0,
             "18k_per_gram": 32828.0
-          },
-          {
-            "date": "11 Apr 2026",
-            "10_gram": 437680.0,
-            "1_tola": 510500.0,
-            "24k_per_gram": 43768.0,
-            "22k_per_gram": 40120.0,
-            "21k_per_gram": 38297.0,
-            "18k_per_gram": 32826.0
           }
         ]
       }
@@ -323,6 +323,15 @@
       "daily_price_history": {
         "total_days": 30,
         "prices": [
+          {
+            "date": "11 May 2026",
+            "10_gram": 415600.0,
+            "1_tola": 484650.0,
+            "24k_per_gram": 41560.0,
+            "22k_per_gram": 38096.0,
+            "21k_per_gram": 36365.0,
+            "18k_per_gram": 31170.0
+          },
           {
             "date": "10 May 2026",
             "10_gram": 415600.0,
@@ -583,15 +592,6 @@
             "22k_per_gram": 40141.0,
             "21k_per_gram": 38316.0,
             "18k_per_gram": 32843.0
-          },
-          {
-            "date": "11 Apr 2026",
-            "10_gram": 437730.0,
-            "1_tola": 510550.0,
-            "24k_per_gram": 43818.0,
-            "22k_per_gram": 40166.0,
-            "21k_per_gram": 38341.0,
-            "18k_per_gram": 32864.0
           }
         ]
       }
@@ -620,6 +620,15 @@
       "daily_price_history": {
         "total_days": 30,
         "prices": [
+          {
+            "date": "11 May 2026",
+            "10_gram": 415700.0,
+            "1_tola": 484800.0,
+            "24k_per_gram": 41570.0,
+            "22k_per_gram": 38106.0,
+            "21k_per_gram": 36374.0,
+            "18k_per_gram": 31178.0
+          },
           {
             "date": "10 May 2026",
             "10_gram": 415700.0,
@@ -880,15 +889,6 @@
             "22k_per_gram": 40150.0,
             "21k_per_gram": 38325.0,
             "18k_per_gram": 32850.0
-          },
-          {
-            "date": "11 Apr 2026",
-            "10_gram": 437780.0,
-            "1_tola": 510600.0,
-            "24k_per_gram": 43868.0,
-            "22k_per_gram": 40212.0,
-            "21k_per_gram": 38385.0,
-            "18k_per_gram": 32901.0
           }
         ]
       }
