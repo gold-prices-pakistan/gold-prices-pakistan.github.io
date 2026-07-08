@@ -1,5 +1,5 @@
 {
-  "scraped_at": "2026-07-08T10:28:04.968345",
+  "scraped_at": "2026-07-08T15:30:48.466511",
   "total_cities": 3,
   "cities": [
     {
@@ -9,17 +9,17 @@
       "rates": [
         {
           "weight": "1 Tola",
-          "price": 431000.0,
+          "price": 432300.0,
           "karat": "24 Karat"
         },
         {
           "weight": "10 Gram",
-          "price": 369519.4,
+          "price": 370633.9,
           "karat": "24 Karat"
         },
         {
           "weight": "1 Gram",
-          "price": 36951.94,
+          "price": 37063.39,
           "karat": "24 Karat"
         }
       ],
@@ -28,12 +28,12 @@
         "prices": [
           {
             "date": "08 Jul 2026",
-            "10_gram": 368660.0,
-            "1_tola": 430000.0,
-            "24k_per_gram": 36866.0,
-            "22k_per_gram": 33794.0,
-            "21k_per_gram": 32258.0,
-            "18k_per_gram": 27650.0
+            "10_gram": 369780.0,
+            "1_tola": 431300.0,
+            "24k_per_gram": 36978.0,
+            "22k_per_gram": 33896.0,
+            "21k_per_gram": 32356.0,
+            "18k_per_gram": 27734.0
           },
           {
             "date": "07 Jul 2026",
@@ -306,17 +306,17 @@
       "rates": [
         {
           "weight": "1 Tola",
-          "price": 431050.0,
+          "price": 432350.0,
           "karat": "24 Karat"
         },
         {
           "weight": "10 Gram",
-          "price": 369562.2,
+          "price": 370676.8,
           "karat": "24 Karat"
         },
         {
           "weight": "1 Gram",
-          "price": 36956.22,
+          "price": 37067.68,
           "karat": "24 Karat"
         }
       ],
@@ -325,12 +325,12 @@
         "prices": [
           {
             "date": "08 Jul 2026",
-            "10_gram": 368710.0,
-            "1_tola": 430050.0,
-            "24k_per_gram": 36916.0,
-            "22k_per_gram": 33839.0,
-            "21k_per_gram": 32302.0,
-            "18k_per_gram": 27687.0
+            "10_gram": 369830.0,
+            "1_tola": 431350.0,
+            "24k_per_gram": 37028.0,
+            "22k_per_gram": 33942.0,
+            "21k_per_gram": 32400.0,
+            "18k_per_gram": 27771.0
           },
           {
             "date": "07 Jul 2026",
@@ -603,17 +603,17 @@
       "rates": [
         {
           "weight": "1 Tola",
-          "price": 431100.0,
+          "price": 432400.0,
           "karat": "24 Karat"
         },
         {
           "weight": "10 Gram",
-          "price": 369605.1,
+          "price": 370719.7,
           "karat": "24 Karat"
         },
         {
           "weight": "1 Gram",
-          "price": 36960.51,
+          "price": 37071.97,
           "karat": "24 Karat"
         }
       ],
@@ -622,12 +622,12 @@
         "prices": [
           {
             "date": "08 Jul 2026",
-            "10_gram": 368760.0,
-            "1_tola": 430100.0,
-            "24k_per_gram": 36966.0,
-            "22k_per_gram": 33885.0,
-            "21k_per_gram": 32345.0,
-            "18k_per_gram": 27725.0
+            "10_gram": 369880.0,
+            "1_tola": 431400.0,
+            "24k_per_gram": 37078.0,
+            "22k_per_gram": 33988.0,
+            "21k_per_gram": 32443.0,
+            "18k_per_gram": 27809.0
           },
           {
             "date": "07 Jul 2026",
